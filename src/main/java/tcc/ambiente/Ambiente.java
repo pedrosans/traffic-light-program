@@ -8,8 +8,8 @@ import tcc.rotinas.Simulador;
 
 public class Ambiente {
 	public List<List<TLLogic.Phase>> planos = new ArrayList<List<TLLogic.Phase>>();
-	public int[] alenos_plano;
-	public int[] alelos_delay;
+	public int[] genes_plano;
+	public int[] genes_delay;
 	public int qt_genotipos;
 	
 	private Simulador simulador;

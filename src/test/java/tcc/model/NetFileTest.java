@@ -10,6 +10,7 @@ import org.junit.Test;
 import tcc.AmbienteTeste1;
 import tcc.ambiente.Fenotipo;
 import tcc.ambiente.Genotipo;
+import tcc.util.IOUtil;
 
 public class NetFileTest {
 
@@ -26,12 +27,13 @@ public class NetFileTest {
 		AmbienteTeste1 ambienteTeste1 = new AmbienteTeste1();
 
 		Genotipo genotipo = new Genotipo();
-		genotipo.delay = 0;
-		genotipo.plano = 0;
+		genotipo.gene_delay = 0;
+		genotipo.gene_plano = 0;
 		Fenotipo fenotipo = new Fenotipo(genotipo, ambienteTeste1);
 		List<Fenotipo> fenotipos = Arrays.asList(new Fenotipo[] { fenotipo, fenotipo, fenotipo });
 
 		ambienteTeste1.getSimulador().getNetFile().program(fenotipos);
+		System.out.println(IOUtil.getFileString(ambienteTeste1.getSimulador().getNetFile().file));
 
 	}
 

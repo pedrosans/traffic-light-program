@@ -9,7 +9,7 @@ public class Fenotipo {
 	public List<TLLogic.Phase> plano;
 
 	public Fenotipo(Genotipo genotipo, Ambiente ambiente) {
-		this.delay = genotipo.delay;
-		this.plano = ambiente.planos.get(genotipo.plano);
+		this.delay = genotipo.gene_delay;
+		this.plano = ambiente.planos.get(genotipo.gene_plano);
 	}
 }

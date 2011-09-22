@@ -31,4 +31,10 @@ public class Net implements Cloneable {
 		net.tlLogics = new ArrayList<TLLogic>(tlLogics);
 		return net;
 	}
+
+	public void toXML(StringBuilder sb) {
+		for (TLLogic tlLogic : tlLogics) {
+			tlLogic.toXML(sb);
+		}
+	}
 }

@@ -3,12 +3,9 @@ package tcc.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import tcc.model.TLLogic.Phase;
-
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
 import com.thoughtworks.xstream.annotations.XStreamImplicit;
-import com.thoughtworks.xstream.annotations.XStreamImplicitCollection;
 
 /**
  * <code>
@@ -22,6 +19,15 @@ import com.thoughtworks.xstream.annotations.XStreamImplicitCollection;
  */
 @XStreamAlias("tl-logic")
 public class TLLogic {
+
+	public void toXML(StringBuilder sb) {
+		sb.append(String.format("<tl-logic id=\"%s\" type=\"%s\" programID=\"%s\" offset=\"%d\">\r\n"//
+				, id, type, programID, offset));
+		for (Phase phase : phases) {
+			sb.append(String.format("  <phase duration=\"%d\" state=\"%s\"/>\r\n", phase.duration, phase.state));
+		}
+		sb.append("</tl-logic>\r\n");
+	}
 
 	@XStreamAsAttribute
 	private String id;
@@ -100,6 +106,34 @@ public class TLLogic {
 			this.state = state;
 		}
 
+		@Override
+		public int hashCode() {
+			final int prime = 31;
+			int result = 1;
+			result = prime * result + duration;
+			result = prime * result + ((state == null) ? 0 : state.hashCode());
+			return result;
+		}
+
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (getClass() != obj.getClass())
+				return false;
+			Phase other = (Phase) obj;
+			if (duration != other.duration)
+				return false;
+			if (state == null) {
+				if (other.state != null)
+					return false;
+			} else if (!state.equals(other.state))
+				return false;
+			return true;
+		}
+
 	}
 
 	/**
@@ -122,4 +156,20 @@ public class TLLogic {
 		}
 		return result;
 	}
+
+	@Override
+	protected TLLogic clone() {
+		TLLogic newLogic = new TLLogic();
+		newLogic.id = this.id;
+		newLogic.type = this.type;
+		newLogic.offset = this.offset;
+		newLogic.programID = this.programID;
+		for (Phase phase : getPhases()) {
+			Phase newPhase = new Phase();
+			newPhase.duration = phase.duration;
+			newPhase.state = phase.state;
+		}
+		return newLogic;
+	}
+
 }
