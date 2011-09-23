@@ -8,29 +8,29 @@ import tcc.rotinas.Simulador.CmdParameter;
 
 public class PerfornanceOutput implements SimulationOutput {
 
-	String expectedOutput = "Simulation ended at time: ";
-	double time;
+    public static String EXPECTED_OUT = "Simulation ended at time: ";
+    double time;
 
-	public Map<CmdParameter, String> decorateCommandParameters(Map<CmdParameter, String> parameters) {
-		parameters.put(CmdParameter.VERBOSE, "");
-		return parameters;
-	}
+    public Map<CmdParameter, String> decorateCommandParameters(Map<CmdParameter, String> parameters) {
+        parameters.put(CmdParameter.VERBOSE, "");
+        return parameters;
+    }
 
-	public void readSilulationOutput(BufferedReader reader) {
-		String line = null;
-		do {
-			try {
-				line = reader.readLine();
-			} catch (IOException e) {
-				throw new RuntimeException(e);
-			}
-		} while (line.contains(expectedOutput) == false);
-		String timeOutput = line.replaceAll(expectedOutput, "").trim();
-		time = new Double(timeOutput);
-	}
+    public void readSilulationOutput(BufferedReader reader) {
+        String line = null;
+        do {
+            try {
+                line = reader.readLine();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        } while (line.contains(EXPECTED_OUT) == false);
+        String timeOutput = line.replaceAll(EXPECTED_OUT, "").trim();
+        time = new Double(timeOutput);
+    }
 
-	public double getIndiceAdaptabilidade() {
-		return 500 - time;
-	}
+    public double getIndiceAdaptabilidade() {
+        return 500 - time;
+    }
 
 }

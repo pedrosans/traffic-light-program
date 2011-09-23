@@ -29,7 +29,32 @@ public class Genotipo implements Cloneable {
 
     @Override
     public String toString() {
-        return "Genotipo [plano=" + gene_plano + ", delay=" + gene_delay + "]";
+        return "G-[plano=" + gene_plano + ", delay=" + gene_delay + "]";
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + gene_delay;
+        result = prime * result + gene_plano;
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Genotipo other = (Genotipo) obj;
+        if (gene_delay != other.gene_delay)
+            return false;
+        if (gene_plano != other.gene_plano)
+            return false;
+        return true;
     }
 
 }

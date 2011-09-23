@@ -17,6 +17,7 @@ public class StandartDevrivation implements SimulationOutput {
 
     File tripOutputFile;
     StringBuilder tripInfoXML;
+    private Double time;
 
     public void setTripOutputFile(File tripOutputFile) {
         this.tripOutputFile = tripOutputFile;
@@ -28,9 +29,10 @@ public class StandartDevrivation implements SimulationOutput {
 
     public Map<CmdParameter, String> decorateCommandParameters(Map<CmdParameter, String> parameters) {
 
-        if (tripOutputFile.exists()) {
+        if (tripOutputFile != null && tripOutputFile.exists()) {
             tripOutputFile.delete();
         }
+        parameters.put(CmdParameter.VERBOSE, "");
         parameters.put(CmdParameter.TRIP_INFO, "stdout");
         return parameters;
     }
@@ -45,17 +47,29 @@ public class StandartDevrivation implements SimulationOutput {
                 line = reader.readLine();
             }
             do {
-                tripInfoXML.append(line);
+                if (line.trim().startsWith("<") == false) {
+                    if (line.contains(PerfornanceOutput.EXPECTED_OUT)) {
+                        String timeOutput = line.replaceAll(PerfornanceOutput.EXPECTED_OUT, "").trim();
+                        time = new Double(timeOutput);
+                    } else {
+                        // apenas ignora
+                    }
+                } else {
+                    tripInfoXML.append(line);
+                }
                 line = reader.readLine();
             } while (line.toLowerCase().contains("tripinfos") == false);
             tripInfoXML.append(line);
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
     public double getIndiceAdaptabilidade() {
-        return new Result().standartDerivation * -1;
+        Result resut = new Result();
+        // System.out.printf("%5.2f  %3f\n", resut.standartDerivation, time);
+        return (50 - resut.standartDerivation) + (500 - time);
     }
 
     public class Result {
@@ -67,8 +81,10 @@ public class StandartDevrivation implements SimulationOutput {
             List<Double> waitSteps = new ArrayList<Double>();
             for (TripInfos.TripInfo info : tripInfos.getTripInfos()) {
                 waitSteps.add((double) info.getWaitSteps());
+                // System.out.print(info.getWaitSteps() + " ");
             }
             standartDerivation = SD.sdFast(waitSteps.toArray(new Double[] {}));
+            // System.out.println(standartDerivation);
         }
 
         public double getStandartDerivation() {
