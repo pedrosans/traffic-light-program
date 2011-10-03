@@ -17,18 +17,9 @@ public class NetFile {
     String firstConfigSlice;
     String finalConfigSlice;
 
-    // FileChannel fileChannel;
-
     public void load(File file) {
         this.file = file;
         loadedNet = Net.load(file);
-        //
-        // try {
-        // RandomAccessFile randomAccessFile = new RandomAccessFile(file, "rw");
-        // fileChannel = randomAccessFile.getChannel();
-        // } catch (FileNotFoundException e) {
-        // throw new RuntimeException(e);
-        // }
 
         programableNet = new Net();
         for (TLLogic tlLogic : loadedNet.getTlLogics()) {
@@ -80,7 +71,7 @@ public class NetFile {
         for (int i = 0; i < fenotipos.size(); i++) {
             TLLogic tlLogic = programableNet.getTlLogics().get(i);
             Fenotipo fenotipo = fenotipos.get(i);
-            tlLogic.setPhases(fenotipo.plano);
+            tlLogic.setPhases(fenotipo.planoSemaforico.getFases());
             tlLogic.setOffset(fenotipo.delay);
         }
         StringBuilder sb = new StringBuilder();
@@ -90,14 +81,5 @@ public class NetFile {
 
         String newNet = getFirstConfigSlice() + newLogic.trim() + getFinalConfigSlice();
         IOUtil.writeTo(file, newNet);
-        //
-        // ByteBuffer buf = ByteBuffer.allocate(tl_bytes);
-        // buf.put(newLogic.getBytes());
-        // try {
-        // fileChannel.write(buf, tl_start_index);
-        // fileChannel.force(true);
-        // } catch (IOException e) {
-        // throw new RuntimeException(e);
-        // }
     }
 }

@@ -136,27 +136,6 @@ public class TLLogic {
 
 	}
 
-	/**
-	 * 30:G;5:y;30:r
-	 * 
-	 * @param string
-	 * @return pharse list
-	 */
-	public static List<Phase> plan(String plan) {
-		List<Phase> result = new ArrayList<TLLogic.Phase>();
-		String[] pharses = plan.split(";");
-		for (String pharseInput : pharses) {
-			String[] parseArgs = pharseInput.split(":");
-			int duration = new Integer(parseArgs[0].trim());
-			String state = parseArgs[1].trim();
-			Phase pharse = new Phase();
-			pharse.setDuration(duration);
-			pharse.setState(state);
-			result.add(pharse);
-		}
-		return result;
-	}
-
 	@Override
 	protected TLLogic clone() {
 		TLLogic newLogic = new TLLogic();

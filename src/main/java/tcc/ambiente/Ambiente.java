@@ -1,27 +1,27 @@
 package tcc.ambiente;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import tcc.model.TLLogic;
+import tcc.model.PlanoSemaforico;
 import tcc.rotinas.Simulador;
 
-public class Ambiente {
-	public List<List<TLLogic.Phase>> planos = new ArrayList<List<TLLogic.Phase>>();
-	public int[] genes_plano;
-	public int[] genes_delay;
-	public int qt_genotipos;
-	
-	private Simulador simulador;
+public abstract class Ambiente {
 
-	public Ambiente() {
-	}
+    public int qt_genotipos;
+    public int[] genes_delay;
 
-	public void setSimulador(Simulador simulador) {
-		this.simulador = simulador;
-	}
+    private Simulador simulador;
 
-	public Simulador getSimulador() {
-		return simulador;
-	}
+    public Ambiente() {
+    }
+
+    public void setSimulador(Simulador simulador) {
+        this.simulador = simulador;
+    }
+
+    public Simulador getSimulador() {
+        return simulador;
+    }
+
+    public abstract PlanoSemaforico getPlanoSemaforico(int gene_plano);
+
+    public abstract int[] getGenesPlano(int locus);
 }

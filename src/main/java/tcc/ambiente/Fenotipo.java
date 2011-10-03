@@ -1,15 +1,13 @@
 package tcc.ambiente;
 
-import java.util.List;
-
-import tcc.model.TLLogic;
+import tcc.model.PlanoSemaforico;
 
 public class Fenotipo {
-	public int delay;
-	public List<TLLogic.Phase> plano;
+    public int delay;
+    public PlanoSemaforico planoSemaforico;
 
-	public Fenotipo(Genotipo genotipo, Ambiente ambiente) {
-		this.delay = genotipo.gene_delay;
-		this.plano = ambiente.planos.get(genotipo.gene_plano);
-	}
+    public Fenotipo(Genotipo genotipo, Ambiente ambiente) {
+        this.delay = genotipo.gene_delay;
+        this.planoSemaforico = ambiente.getPlanoSemaforico(genotipo.gene_plano);
+    }
 }

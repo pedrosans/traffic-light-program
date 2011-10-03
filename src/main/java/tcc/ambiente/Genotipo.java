@@ -22,8 +22,8 @@ public class Genotipo implements Cloneable {
         return new Genotipo(gene_plano, gene_delay);
     }
 
-    public void muta(Ambiente ambiente) {
-        this.gene_plano = (int) ((Math.random() * Integer.MAX_VALUE) % ambiente.genes_plano.length);
+    public void muta(int locus, Ambiente ambiente) {
+        this.gene_plano = (int) ((Math.random() * Integer.MAX_VALUE) % ambiente.getGenesPlano(locus).length);
         this.gene_delay = (int) ((Math.random() * Integer.MAX_VALUE) % ambiente.genes_delay.length);
     }
 

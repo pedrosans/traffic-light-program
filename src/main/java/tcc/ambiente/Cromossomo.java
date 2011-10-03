@@ -36,7 +36,7 @@ public class Cromossomo implements Cloneable {
 
     public void muta(Ambiente ambiente) {
         int pos = (int) (Math.random() * Integer.MAX_VALUE % genotipos.size());
-        genotipos.get(pos).muta(ambiente);
+        genotipos.get(pos).muta(pos, ambiente);
     }
 
     @Override

@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import tcc.AmbienteTeste1;
 import tcc.model.NetFile;
-import tcc.rotinas.output.StandartDevrivation;
+import tcc.rotinas.output.StatisticalOutput;
 
 public class SimulacaoTest {
     @Test
@@ -17,7 +17,7 @@ public class SimulacaoTest {
         NetFile netFile = new NetFile();
         netFile.load(new File(AmbienteTeste1.path_teste_1 + "example.net.xml"));
 
-        Simulador<StandartDevrivation> simulador = new Simulador(new StandartDevrivation());
+        Simulador<StatisticalOutput> simulador = new Simulador(new StatisticalOutput());
         simulador.setNetFile(netFile);
         simulador.setSumoConfigFile(new File(AmbienteTeste1.path_teste_1 + "example.sumo.cfg"));
 

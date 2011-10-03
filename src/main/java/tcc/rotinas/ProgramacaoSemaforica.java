@@ -175,9 +175,9 @@ public class ProgramacaoSemaforica {
 
                 TLLogic logica = ambiente.getSimulador().getNetFile().getLoadedNet().getTlLogics().get(j);
                 genotipo.gene_delay = logica.getOffset();
-                genotipo.gene_plano = ambiente.genes_plano[0];
-                for (int ip = 0; ip < ambiente.genes_plano.length; ip++) {
-                    List<TLLogic.Phase> plano = ambiente.planos.get(ip);
+                genotipo.gene_plano = ambiente.getGenesPlano(j)[0];
+                for (int ip = 0; ip < ambiente.getGenesPlano(j).length; ip++) {
+                    List<TLLogic.Phase> plano = ambiente.getPlanoSemaforico(genotipo.gene_plano).getFases();
                     if (logica.getPhases().equals(plano)) {
                         genotipo.gene_plano = ip;
                     }
