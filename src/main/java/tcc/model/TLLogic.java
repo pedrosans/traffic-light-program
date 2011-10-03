@@ -37,135 +37,138 @@ import com.thoughtworks.xstream.annotations.XStreamImplicit;
 @XStreamAlias("tl-logic")
 public class TLLogic {
 
-	public void toXML(StringBuilder sb) {
-		sb.append(String.format("<tl-logic id=\"%s\" type=\"%s\" programID=\"%s\" offset=\"%d\">\r\n"//
-				, id, type, programID, offset));
-		for (Phase phase : phases) {
-			sb.append(String.format("  <phase duration=\"%d\" state=\"%s\"/>\r\n", phase.duration, phase.state));
-		}
-		sb.append("</tl-logic>\r\n");
-	}
+    @XStreamAsAttribute
+    private String id;
+    @XStreamAsAttribute
+    private String type = "static";
+    @XStreamAsAttribute
+    private String programID;
+    @XStreamAsAttribute
+    private int offset;
 
-	@XStreamAsAttribute
-	private String id;
-	@XStreamAsAttribute
-	private String type = "static";
-	@XStreamAsAttribute
-	private String programID;
-	@XStreamAsAttribute
-	private int offset;
+    @XStreamImplicit(itemFieldName = "phase")
+    private List<Phase> phases = new ArrayList<TLLogic.Phase>();
 
-	@XStreamImplicit(itemFieldName = "phase")
-	private List<Phase> phases = new ArrayList<TLLogic.Phase>();
+    public String getId() {
+        return id;
+    }
 
-	public String getId() {
-		return id;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    public String getType() {
+        return type;
+    }
 
-	public String getType() {
-		return type;
-	}
+    public void setType(String type) {
+        this.type = type;
+    }
 
-	public void setType(String type) {
-		this.type = type;
-	}
+    public String getProgramID() {
+        return programID;
+    }
 
-	public String getProgramID() {
-		return programID;
-	}
+    public void setProgramID(String programID) {
+        this.programID = programID;
+    }
 
-	public void setProgramID(String programID) {
-		this.programID = programID;
-	}
+    public int getOffset() {
+        return offset;
+    }
 
-	public int getOffset() {
-		return offset;
-	}
+    public void setOffset(int offset) {
+        this.offset = offset;
+    }
 
-	public void setOffset(int offset) {
-		this.offset = offset;
-	}
+    public List<Phase> getPhases() {
+        return phases;
+    }
 
-	public List<Phase> getPhases() {
-		return phases;
-	}
+    public void setPhases(List<Phase> phases) {
+        this.phases = phases;
+    }
 
-	public void setPhases(List<Phase> phases) {
-		this.phases = phases;
-	}
+    /**
+     * Writes the XML representation of this {@link TLLogic} in the param {@link StringBuilder}
+     */
+    public void toXML(StringBuilder sb) {
+        sb.append(String.format("<tl-logic id=\"%s\" type=\"%s\" programID=\"%s\" offset=\"%d\">\r\n"//
+                , id, type, programID, offset));
+        for (Phase phase : phases) {
+            sb.append(String.format("  <phase duration=\"%d\" state=\"%s\"/>\r\n", phase.duration, phase.state));
+        }
+        sb.append("</tl-logic>\r\n");
+    }
 
-	/**
-	 * @author Pedro Santos
-	 */
-	public static class Phase {
-		@XStreamAsAttribute
-		private int duration;
-		@XStreamAsAttribute
-		private String state;
+    /**
+     * @author Pedro Santos
+     */
+    public static class Phase {
+        @XStreamAsAttribute
+        private int duration;
+        @XStreamAsAttribute
+        private String state;
 
-		public int getDuration() {
-			return duration;
-		}
+        public int getDuration() {
+            return duration;
+        }
 
-		public void setDuration(int duration) {
-			this.duration = duration;
-		}
+        public void setDuration(int duration) {
+            this.duration = duration;
+        }
 
-		public String getState() {
-			return state;
-		}
+        public String getState() {
+            return state;
+        }
 
-		public void setState(String state) {
-			this.state = state;
-		}
+        public void setState(String state) {
+            this.state = state;
+        }
 
-		@Override
-		public int hashCode() {
-			final int prime = 31;
-			int result = 1;
-			result = prime * result + duration;
-			result = prime * result + ((state == null) ? 0 : state.hashCode());
-			return result;
-		}
+        @Override
+        public int hashCode() {
+            final int prime = 31;
+            int result = 1;
+            result = prime * result + duration;
+            result = prime * result + ((state == null) ? 0 : state.hashCode());
+            return result;
+        }
 
-		@Override
-		public boolean equals(Object obj) {
-			if (this == obj)
-				return true;
-			if (obj == null)
-				return false;
-			if (getClass() != obj.getClass())
-				return false;
-			Phase other = (Phase) obj;
-			if (duration != other.duration)
-				return false;
-			if (state == null) {
-				if (other.state != null)
-					return false;
-			} else if (!state.equals(other.state))
-				return false;
-			return true;
-		}
+        @Override
+        public boolean equals(Object obj) {
+            if (this == obj)
+                return true;
+            if (obj == null)
+                return false;
+            if (getClass() != obj.getClass())
+                return false;
+            Phase other = (Phase) obj;
+            if (duration != other.duration)
+                return false;
+            if (state == null) {
+                if (other.state != null)
+                    return false;
+            } else if (!state.equals(other.state))
+                return false;
+            return true;
+        }
 
-	}
+    }
 
-	@Override
-	protected TLLogic clone() {
-		TLLogic newLogic = new TLLogic();
-		newLogic.id = this.id;
-		newLogic.type = this.type;
-		newLogic.offset = this.offset;
-		newLogic.programID = this.programID;
-		for (Phase phase : getPhases()) {
-			Phase newPhase = new Phase();
-			newPhase.duration = phase.duration;
-			newPhase.state = phase.state;
-		}
-		return newLogic;
-	}
+    @Override
+    protected TLLogic clone() {
+        TLLogic newLogic = new TLLogic();
+        newLogic.id = this.id;
+        newLogic.type = this.type;
+        newLogic.offset = this.offset;
+        newLogic.programID = this.programID;
+        for (Phase phase : getPhases()) {
+            Phase newPhase = new Phase();
+            newPhase.duration = phase.duration;
+            newPhase.state = phase.state;
+        }
+        return newLogic;
+    }
 
 }

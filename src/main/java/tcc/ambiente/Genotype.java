@@ -22,24 +22,24 @@ package tcc.ambiente;
  * 
  * @author Pedro Santos
  */
-public class Genotipo implements Cloneable {
+public class Genotype implements Cloneable {
     public int gene_plano;
     public int gene_delay;
 
-    public Genotipo() {
+    public Genotype() {
     }
 
-    public Genotipo(int plano, int delay) {
+    public Genotype(int plano, int delay) {
         this.gene_plano = plano;
         this.gene_delay = delay;
     }
 
     @Override
-    protected Genotipo clone() throws CloneNotSupportedException {
-        return new Genotipo(gene_plano, gene_delay);
+    protected Genotype clone() throws CloneNotSupportedException {
+        return new Genotype(gene_plano, gene_delay);
     }
 
-    public void muta(int locus, Ambiente ambiente) {
+    public void muta(int locus, Environment ambiente) {
         this.gene_plano = (int) ((Math.random() * Integer.MAX_VALUE) % ambiente.getGenesPlano(locus).length);
         this.gene_delay = (int) ((Math.random() * Integer.MAX_VALUE) % ambiente.genes_delay.length);
     }
@@ -66,7 +66,7 @@ public class Genotipo implements Cloneable {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Genotipo other = (Genotipo) obj;
+        Genotype other = (Genotype) obj;
         if (gene_delay != other.gene_delay)
             return false;
         if (gene_plano != other.gene_plano)

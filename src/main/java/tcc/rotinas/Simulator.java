@@ -27,7 +27,7 @@ import java.util.Map;
 import tcc.model.NetFile;
 import tcc.rotinas.output.SimulationOutput;
 
-public class Simulador<T extends SimulationOutput> {
+public class Simulator<T extends SimulationOutput> {
 
 	public static enum CmdParameter {
 		CONFIG_FILE("-c"), //
@@ -44,10 +44,10 @@ public class Simulador<T extends SimulationOutput> {
 	File sumoConfigFile;
 	Process cmd;
 	BufferedReader reader;
-	Map<CmdParameter, String> parameters = new HashMap<Simulador.CmdParameter, String>();
+	Map<CmdParameter, String> parameters = new HashMap<Simulator.CmdParameter, String>();
 	T simulationOutput;
 
-	public Simulador(T simulationOutput) {
+	public Simulator(T simulationOutput) {
 		this.simulationOutput = simulationOutput;
 		Runtime runtime = Runtime.getRuntime();
 		try {

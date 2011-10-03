@@ -22,12 +22,12 @@ import java.util.List;
 
 import tcc.model.TLLogic.Phase;
 
-public class PlanoSemaforico {
+public class TrafficLightPhases {
 
-    private List<TLLogic.Phase> fases = new ArrayList<TLLogic.Phase>();
+    private List<TLLogic.Phase> phases = new ArrayList<TLLogic.Phase>();
 
-    public List<TLLogic.Phase> getFases() {
-        return fases;
+    public List<TLLogic.Phase> getPhases() {
+        return phases;
     }
 
     /**
@@ -36,8 +36,8 @@ public class PlanoSemaforico {
      * @param string
      * @return pharse list
      */
-    public static PlanoSemaforico plan(String plan) {
-        PlanoSemaforico planoSemaforico = new PlanoSemaforico();
+    public static TrafficLightPhases plan(String plan) {
+        TrafficLightPhases planoSemaforico = new TrafficLightPhases();
         String[] pharses = plan.split(";");
         for (String pharseInput : pharses) {
             String[] parseArgs = pharseInput.split(":");
@@ -46,7 +46,7 @@ public class PlanoSemaforico {
             Phase pharse = new Phase();
             pharse.setDuration(duration);
             pharse.setState(state);
-            planoSemaforico.fases.add(pharse);
+            planoSemaforico.phases.add(pharse);
         }
         return planoSemaforico;
     }

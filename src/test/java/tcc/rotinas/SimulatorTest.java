@@ -15,30 +15,31 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package tcc.ambiente;
+package tcc.rotinas;
 
-import tcc.model.PlanoSemaforico;
-import tcc.rotinas.Simulador;
+import java.io.File;
+import java.io.IOException;
 
-public abstract class Ambiente {
+import junit.framework.Assert;
 
-    public int qt_genotipos;
-    public int[] genes_delay;
+import org.junit.Test;
 
-    private Simulador simulador;
+import tcc.TestEnvironment1;
+import tcc.model.NetFile;
+import tcc.rotinas.output.StatisticalOutput;
 
-    public Ambiente() {
+public class SimulatorTest {
+    @Test
+    public void test() throws IOException {
+        NetFile netFile = new NetFile();
+        netFile.load(new File(TestEnvironment1.path_teste_1 + "example.net.xml"));
+
+        Simulator<StatisticalOutput> simulador = new Simulator(new StatisticalOutput());
+        simulador.setNetFile(netFile);
+        simulador.setSumoConfigFile(new File(TestEnvironment1.path_teste_1 + "example.sumo.cfg"));
+
+        simulador.simula();
+
+        Assert.assertNotNull(simulador.getSimulationOutput().getResult());
     }
-
-    public void setSimulador(Simulador simulador) {
-        this.simulador = simulador;
-    }
-
-    public Simulador getSimulador() {
-        return simulador;
-    }
-
-    public abstract PlanoSemaforico getPlanoSemaforico(int gene_plano);
-
-    public abstract int[] getGenesPlano(int locus);
 }

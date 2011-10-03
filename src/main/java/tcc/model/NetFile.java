@@ -20,7 +20,7 @@ package tcc.model;
 import java.io.File;
 import java.util.List;
 
-import tcc.ambiente.Fenotipo;
+import tcc.ambiente.Phenotype;
 import tcc.util.IOUtil;
 
 public class NetFile {
@@ -84,11 +84,11 @@ public class NetFile {
     /**
      * Record the new net file to have its path used as parameter for SUDO
      */
-    public void program(List<Fenotipo> fenotipos) {
+    public void program(List<Phenotype> fenotipos) {
         for (int i = 0; i < fenotipos.size(); i++) {
             TLLogic tlLogic = programableNet.getTlLogics().get(i);
-            Fenotipo fenotipo = fenotipos.get(i);
-            tlLogic.setPhases(fenotipo.planoSemaforico.getFases());
+            Phenotype fenotipo = fenotipos.get(i);
+            tlLogic.setPhases(fenotipo.planoSemaforico.getPhases());
             tlLogic.setOffset(fenotipo.delay);
         }
         StringBuilder sb = new StringBuilder();

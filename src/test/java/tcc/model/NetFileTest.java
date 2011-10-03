@@ -24,9 +24,9 @@ import java.util.List;
 
 import org.junit.Test;
 
-import tcc.AmbienteTeste1;
-import tcc.ambiente.Fenotipo;
-import tcc.ambiente.Genotipo;
+import tcc.TestEnvironment1;
+import tcc.ambiente.Phenotype;
+import tcc.ambiente.Genotype;
 import tcc.util.IOUtil;
 
 public class NetFileTest {
@@ -41,13 +41,13 @@ public class NetFileTest {
 
 	@Test
 	public void test1() {
-		AmbienteTeste1 ambienteTeste1 = new AmbienteTeste1();
+		TestEnvironment1 ambienteTeste1 = new TestEnvironment1();
 
-		Genotipo genotipo = new Genotipo();
+		Genotype genotipo = new Genotype();
 		genotipo.gene_delay = 0;
 		genotipo.gene_plano = 0;
-		Fenotipo fenotipo = new Fenotipo(genotipo, ambienteTeste1);
-		List<Fenotipo> fenotipos = Arrays.asList(new Fenotipo[] { fenotipo, fenotipo, fenotipo });
+		Phenotype fenotipo = new Phenotype(genotipo, ambienteTeste1);
+		List<Phenotype> fenotipos = Arrays.asList(new Phenotype[] { fenotipo, fenotipo, fenotipo });
 
 		ambienteTeste1.getSimulador().getNetFile().program(fenotipos);
 		System.out.println(IOUtil.getFileString(ambienteTeste1.getSimulador().getNetFile().file));

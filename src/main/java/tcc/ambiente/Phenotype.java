@@ -17,13 +17,13 @@
  */
 package tcc.ambiente;
 
-import tcc.model.PlanoSemaforico;
+import tcc.model.TrafficLightPhases;
 
-public class Fenotipo {
+public class Phenotype {
     public int delay;
-    public PlanoSemaforico planoSemaforico;
+    public TrafficLightPhases planoSemaforico;
 
-    public Fenotipo(Genotipo genotipo, Ambiente ambiente) {
+    public Phenotype(Genotype genotipo, Environment ambiente) {
         this.delay = genotipo.gene_delay;
         this.planoSemaforico = ambiente.getPlanoSemaforico(genotipo.gene_plano);
     }

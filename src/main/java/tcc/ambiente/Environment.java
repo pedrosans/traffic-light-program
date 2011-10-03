@@ -15,22 +15,30 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package tcc.rotinas;
+package tcc.ambiente;
 
-import org.junit.Test;
+import tcc.model.TrafficLightPhases;
+import tcc.rotinas.Simulator;
 
-import tcc.AmbienteTeste1;
-import tcc.ambiente.Ambiente;
+public abstract class Environment {
 
-public class ProgramacaoSemaforicaTest {
+    public int qt_genotipos;
+    public int[] genes_delay;
 
-	@Test
-	public void test() {
-		Ambiente ambiente = new AmbienteTeste1();
+    private Simulator simulador;
 
-		ProgramacaoSemaforica calibragem = new ProgramacaoSemaforica();
-		calibragem.setAmbiente(ambiente);
-		calibragem.executa();
+    public Environment() {
+    }
 
-	}
+    public void setSimulador(Simulator simulador) {
+        this.simulador = simulador;
+    }
+
+    public Simulator getSimulador() {
+        return simulador;
+    }
+
+    public abstract TrafficLightPhases getPlanoSemaforico(int gene_plano);
+
+    public abstract int[] getGenesPlano(int locus);
 }

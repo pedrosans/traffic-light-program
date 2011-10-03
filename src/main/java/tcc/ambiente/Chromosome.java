@@ -22,13 +22,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Cromossomo implements Cloneable {
+public class Chromosome implements Cloneable {
     public static Map<Integer, Double> cache = new HashMap<Integer, Double>();
 
-    public List<Genotipo> genotipos = new ArrayList<Genotipo>();
+    public List<Genotype> genotipos = new ArrayList<Genotype>();
     public double indiceAdaptabilidade;
 
-    public Double getIndiceAdaptabilidadeDoCache(Ambiente ambiente) {
+    public Double getIndiceAdaptabilidadeDoCache(Environment ambiente) {
         Double cached = cache.get(this.hashCode());
         if (cached == null) {
             ambiente.getSimulador().getNetFile().program(getFenotipos(ambiente));
@@ -39,28 +39,28 @@ public class Cromossomo implements Cloneable {
         return cached;
     }
 
-    public void calculaIndeceAdaptabilidade(Ambiente ambiente) {
+    public void calculateTheAdaptabilityIndex(Environment ambiente) {
         indiceAdaptabilidade = getIndiceAdaptabilidadeDoCache(ambiente);
     }
 
-    public List<Fenotipo> getFenotipos(Ambiente ambiente) {
-        List<Fenotipo> fenotipos = new ArrayList<Fenotipo>();
-        for (Genotipo genotipo : genotipos) {
-            fenotipos.add(new Fenotipo(genotipo, ambiente));
+    public List<Phenotype> getFenotipos(Environment ambiente) {
+        List<Phenotype> fenotipos = new ArrayList<Phenotype>();
+        for (Genotype genotipo : genotipos) {
+            fenotipos.add(new Phenotype(genotipo, ambiente));
         }
         return fenotipos;
     }
 
-    public void muta(Ambiente ambiente) {
+    public void muta(Environment ambiente) {
         int pos = (int) (Math.random() * Integer.MAX_VALUE % genotipos.size());
         genotipos.get(pos).muta(pos, ambiente);
     }
 
     @Override
-    public Cromossomo clone() throws CloneNotSupportedException {
-        Cromossomo clone = new Cromossomo();
+    public Chromosome clone() throws CloneNotSupportedException {
+        Chromosome clone = new Chromosome();
         clone.indiceAdaptabilidade = this.indiceAdaptabilidade;
-        for (Genotipo genotipo : genotipos) {
+        for (Genotype genotipo : genotipos) {
             clone.genotipos.add(genotipo.clone());
         }
         return clone;
@@ -73,7 +73,7 @@ public class Cromossomo implements Cloneable {
 
     public String toString(boolean detatlhado) {
         String s = "";
-        for (Genotipo g : genotipos) {
+        for (Genotype g : genotipos) {
             s += g.toString() + (detatlhado ? "\r\n" : "");
         }
         return s;
@@ -95,7 +95,7 @@ public class Cromossomo implements Cloneable {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Cromossomo other = (Cromossomo) obj;
+        Chromosome other = (Chromosome) obj;
         if (genotipos == null) {
             if (other.genotipos != null)
                 return false;

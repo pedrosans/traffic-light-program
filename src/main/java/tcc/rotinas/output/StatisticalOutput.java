@@ -26,7 +26,7 @@ import java.util.Map;
 
 import tcc.model.TripInfos;
 import tcc.model.XStreamFacade;
-import tcc.rotinas.Simulador.CmdParameter;
+import tcc.rotinas.Simulator.CmdParameter;
 import tcc.util.IOUtil;
 import tcc.util.SD;
 

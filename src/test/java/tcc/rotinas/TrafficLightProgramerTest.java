@@ -17,29 +17,20 @@
  */
 package tcc.rotinas;
 
-import java.io.File;
-import java.io.IOException;
-
-import junit.framework.Assert;
-
 import org.junit.Test;
 
-import tcc.AmbienteTeste1;
-import tcc.model.NetFile;
-import tcc.rotinas.output.StatisticalOutput;
+import tcc.TestEnvironment1;
+import tcc.ambiente.Environment;
 
-public class SimulacaoTest {
-    @Test
-    public void test() throws IOException {
-        NetFile netFile = new NetFile();
-        netFile.load(new File(AmbienteTeste1.path_teste_1 + "example.net.xml"));
+public class TrafficLightProgramerTest {
 
-        Simulador<StatisticalOutput> simulador = new Simulador(new StatisticalOutput());
-        simulador.setNetFile(netFile);
-        simulador.setSumoConfigFile(new File(AmbienteTeste1.path_teste_1 + "example.sumo.cfg"));
+	@Test
+	public void test() {
+		Environment ambiente = new TestEnvironment1();
 
-        simulador.simula();
+		TrafficLightProgramer calibragem = new TrafficLightProgramer();
+		calibragem.setAmbiente(ambiente);
+		calibragem.executa();
 
-        Assert.assertNotNull(simulador.getSimulationOutput().getResult());
-    }
+	}
 }
