@@ -30,6 +30,6 @@ public class Phenotype {
 
 	public Phenotype(Genotype genotipo, Environment ambiente) {
 		this.delay = genotipo.gene_delay;
-		this.plan = ambiente.getPlanoSemaforico(genotipo.gene_plan);
+		this.plan = ambiente.getPlan(genotipo.gene_plan);
 	}
 }

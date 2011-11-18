@@ -3,7 +3,7 @@ package tcc.functionality;
 import java.util.ArrayList;
 import java.util.List;
 
-import tcc.Aplicacao;
+import tcc.Application;
 import tcc.environment.Chromosome;
 import tcc.environment.Environment;
 import tcc.environment.Genotype;
@@ -12,126 +12,115 @@ import tcc.model.TLLogic;
 public class TrafficLightProgramer {
 
 	Environment environment;
-	int qt_populacao = 50;
-	int qt_metade_populacao = qt_populacao / 2;
-	List<Chromosome> cromossomos;
-	List<Chromosome> cromossomosNovos;
-	long[] repeticoes;
-	Chromosome melhorCromossomo;
+	int populationSize = 50;
+	List<Chromosome> chromosomes;
+	List<Chromosome> newChromosomes;
+	long[] interactions;
+	Chromosome bestChromosome;
 
-	public void setAmbiente(Environment ambiente) {
-		this.environment = ambiente;
+	public void setEnvironment(Environment environment) {
+		this.environment = environment;
 	}
 
-	public void executa() {
-		cromossomos = new ArrayList<Chromosome>();
-		cromossomosNovos = new ArrayList<Chromosome>();
-		repeticoes = new long[100];
-		int condicaoParada = 50;
+	public void execute() {
+		chromosomes = new ArrayList<Chromosome>();
+		newChromosomes = new ArrayList<Chromosome>();
+		interactions = new long[100];
+		int breakCondition = 50;
 
-		// Gôritimu
-		zeraVetores();
-		geraPopulacaoInicial();
-		// geraMatrizDistancias();
+		initializeChromosomesStructure();
+		generateInitialPopulation();
 
-		while (condicaoParada > 0) {
-			calculaIndicesAdaptabilidade();
-			showupTheBestSolutionSoFar(condicaoParada);
-			geraCrossingOver();
+		while (breakCondition > 0) {
+			calculateTheFitnessIndex();
+			showupTheBestSolutionSoFar(breakCondition);
+			generateCrossingOver();
 			doMutations();
-			condicaoParada -= 1;
-			if (Aplicacao.endSignal.isSignalized()) {
+			breakCondition -= 1;
+			if (Application.endSignal.isSignalized()) {
 				System.out.println("Stoping...");
 				break;
 			}
 		}
-		environment.getSimulator().getNetFile().program(melhorCromossomo.getFenotipos(environment));
-		System.out.println("Best found solution: " + melhorCromossomo.fitnessIndex);
-		System.out.println(melhorCromossomo.toString(true));
+		environment.getSimulator().getNetFile().program(bestChromosome.getFenotipos(environment));
+		System.out.println("Best found solution: " + bestChromosome.fitnessIndex);
+		System.out.println(bestChromosome.toString(true));
 	}
 
-	private void geraCrossingOver() {
+	private void generateCrossingOver() {
 
-		// Método da Roleta
-		int soma = sumIndexes();
+		// roulette method
+		int sum = sumIndexes();
 
-		int sorteioPai, sorteioMae;
-		int indicePai, indiceMae;
-		int pontoCrossingOver;
+		int luckParent, luckMother;
+		int parentIndex, motherIndex;
+		int crossingOverPoint;
 
-		for (int i = 0; i < qt_metade_populacao; i++) {
-			sorteioPai = (int) Math.round(Math.random() * soma);
-			sorteioMae = (int) Math.round(Math.random() * soma);
+		for (int i = 0; i < halfPopulationSize(); i++) {
+			luckParent = (int) Math.round(Math.random() * sum);
+			luckMother = (int) Math.round(Math.random() * sum);
 
-			indicePai = 0;
-			while (sorteioPai > 0 && indicePai < qt_populacao) {
-				sorteioPai -= cromossomos.get(indicePai).fitnessIndex;
-				indicePai++;
+			parentIndex = 0;
+			while (luckParent > 0 && parentIndex < populationSize) {
+				luckParent -= chromosomes.get(parentIndex).fitnessIndex;
+				parentIndex++;
 			}
-			indicePai -= 1;
-			if (indicePai < 0)
-				indicePai = 0;
+			parentIndex -= 1;
+			if (parentIndex < 0)
+				parentIndex = 0;
 
-			indiceMae = 0;
-			while (sorteioMae > 0 && indiceMae < qt_populacao) {
-				sorteioMae -= cromossomos.get(indiceMae).fitnessIndex;
-				indiceMae++;
+			motherIndex = 0;
+			while (luckMother > 0 && motherIndex < populationSize) {
+				luckMother -= chromosomes.get(motherIndex).fitnessIndex;
+				motherIndex++;
 			}
-			indiceMae -= 1;
-			if (indiceMae < 0)
-				indiceMae = 0;
+			motherIndex -= 1;
+			if (motherIndex < 0)
+				motherIndex = 0;
 
-			Chromosome choicedParent = cromossomos.get(indicePai).clone();
-			Chromosome choicedMother = cromossomos.get(indiceMae).clone();
+			Chromosome choicedParent = chromosomes.get(parentIndex).clone();
+			Chromosome choicedMother = chromosomes.get(motherIndex).clone();
 
-			cromossomosNovos.set(i, choicedParent);
-			cromossomosNovos.set(i + qt_metade_populacao, choicedMother);
+			newChromosomes.set(i, choicedParent);
+			newChromosomes.set(i + halfPopulationSize(), choicedMother);
 
-			pontoCrossingOver = (int) (Math.random() * Integer.MAX_VALUE % environment.genotypeNumber);
+			crossingOverPoint = (int) (Math.random() * Integer.MAX_VALUE % environment.genotypeNumber);
 
-			for (int j = pontoCrossingOver; j < environment.genotypeNumber; j++) {
-				// Pego os dois alelos que serão trocados
-				Genotype aleloPai = choicedParent.genotypes.get(j);
-				Genotype aleloMae = choicedMother.genotypes.get(j);
-				choicedParent.genotypes.set(j, aleloMae);
-				choicedMother.genotypes.set(j, aleloPai);
+			for (int j = crossingOverPoint; j < environment.genotypeNumber; j++) {
+				Genotype parentAllele = choicedParent.genotypes.get(j);
+				Genotype motherAllele = choicedMother.genotypes.get(j);
+				choicedParent.genotypes.set(j, motherAllele);
+				choicedMother.genotypes.set(j, parentAllele);
 			}
 		}
-		cromossomos = cromossomosNovos;
+		chromosomes = newChromosomes;
 	}
 
 	/**
-	 * Helper method to rool the
+	 * Helper method to calc the initial roulette method value
 	 */
 	private int sumIndexes() {
 
-		int soma = 0;
+		int sum = 0;
 
-		for (int i = 0; i < qt_populacao; i++) {
-			soma += cromossomos.get(i).fitnessIndex;
+		for (int i = 0; i < populationSize; i++) {
+			sum += chromosomes.get(i).fitnessIndex;
 		}
-		return soma;
+		return sum;
 	}
 
 	private void doMutations() {
-
-		int quantidadeMutacoes;
-		int cromossomoEscolhido;
-
-		quantidadeMutacoes = (int) (Math.random() * Integer.MAX_VALUE % qt_metade_populacao);
-
-		for (int i = 0; i < quantidadeMutacoes; i++) {
-
-			cromossomoEscolhido = (int) Math.round(Math.random() * (qt_populacao - 1));
-			cromossomos.get(cromossomoEscolhido).mutate(environment);
+		int numberOfMutations = (int) (Math.random() * Integer.MAX_VALUE % halfPopulationSize());
+		for (int i = 0; i < numberOfMutations; i++) {
+			int luckChromosome = (int) Math.round(Math.random() * (populationSize - 1));
+			chromosomes.get(luckChromosome).mutate(environment);
 
 		}
-
 	}
 
 	private void showupTheBestSolutionSoFar(int laco) {
 		Chromosome bestInTheLoop = null;
-		for (Chromosome cromossomo : cromossomos) {
+		for (Chromosome cromossomo : chromosomes) {
 			if (bestInTheLoop == null) {
 				bestInTheLoop = cromossomo;
 			} else {
@@ -139,11 +128,11 @@ public class TrafficLightProgramer {
 					bestInTheLoop = cromossomo;
 				}
 			}
-			if (melhorCromossomo == null) {
-				melhorCromossomo = cromossomo;
+			if (bestChromosome == null) {
+				bestChromosome = cromossomo;
 			} else {
-				if (cromossomo.fitnessIndex > melhorCromossomo.fitnessIndex) {
-					melhorCromossomo = cromossomo.clone();
+				if (cromossomo.fitnessIndex > bestChromosome.fitnessIndex) {
+					bestChromosome = cromossomo.clone();
 				}
 			}
 		}
@@ -152,42 +141,43 @@ public class TrafficLightProgramer {
 
 	}
 
-	private void calculaIndicesAdaptabilidade() {
-		for (Chromosome cromossomo : cromossomos) {
-			cromossomo.calculateTheAdaptabilityIndex(environment);
+	private void calculateTheFitnessIndex() {
+		for (Chromosome cromossomo : chromosomes) {
+			cromossomo.calculateTheFitnessIndex(environment);
 		}
 	}
 
-	private void geraPopulacaoInicial() {
-		for (int i = 0; i < qt_populacao; i++) {
-			Chromosome cromossomo = new Chromosome();
-			// De início eu considero todas as soluções ruins
-			cromossomo.fitnessIndex = 0;
-			cromossomo.genotypes = new ArrayList<Genotype>();
+	private void generateInitialPopulation() {
+		for (int i = 0; i < populationSize; i++) {
+			Chromosome chromosome = new Chromosome();
+			// at the beginning all fitness index are bad
+			chromosome.fitnessIndex = 0;
+			chromosome.genotypes = new ArrayList<Genotype>();
 			for (int j = 0; j < environment.genotypeNumber; j++) {
-				Genotype genotipo = new Genotype();
-
-				TLLogic logica = environment.getSimulator().getNetFile().getLoadedNet().getTlLogics().get(j);
-				genotipo.gene_delay = logica.getOffset();
-				genotipo.gene_plan = environment.getGenesPlano(j)[0];
+				Genotype genotype = new Genotype();
+				TLLogic lightLogic = environment.getSimulator().getNetFile().getLoadedNet().getTlLogics().get(j);
+				genotype.gene_delay = lightLogic.getOffset();
+				genotype.gene_plan = environment.getGenesPlano(j)[0];
 				for (int ip = 0; ip < environment.getGenesPlano(j).length; ip++) {
-					List<TLLogic.Phase> plano = environment.getPlanoSemaforico(genotipo.gene_plan).getPhases();
-					if (logica.getPhases().equals(plano)) {
-						genotipo.gene_plan = ip;
+					List<TLLogic.Phase> plan = environment.getPlan(genotype.gene_plan).getPhases();
+					if (lightLogic.getPhases().equals(plan)) {
+						genotype.gene_plan = ip;
 					}
 				}
-
-				cromossomo.genotypes.add(genotipo);
+				chromosome.genotypes.add(genotype);
 			}
-			cromossomos.add(cromossomo);
+			chromosomes.add(chromosome);
 		}
 	}
 
-	private void zeraVetores() {
-		for (int i = 0; i < qt_populacao; i++) {
-			cromossomosNovos.add(null);
+	private void initializeChromosomesStructure() {
+		for (int i = 0; i < populationSize; i++) {
+			newChromosomes.add(null);
 		}
-		cromossomos.clear();
+		chromosomes.clear();
 	}
 
+	private int halfPopulationSize() {
+		return populationSize / 2;
+	}
 }

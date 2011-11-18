@@ -38,7 +38,7 @@ public class ChromosomeTest {
 				new Genotype(0, 0), new Genotype(0, 0), new Genotype(0, 0) //
 				});
 
-		cromossomo.calculateTheAdaptabilityIndex(testEnvironment1);
+		cromossomo.calculateTheFitnessIndex(testEnvironment1);
 
 		assertTrue(cromossomo.fitnessIndex != 0);
 	}

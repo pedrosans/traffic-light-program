@@ -24,31 +24,31 @@ import tcc.model.TLLogic.Phase;
 
 public class TrafficLightPhases {
 
-    private List<TLLogic.Phase> phases = new ArrayList<TLLogic.Phase>();
+	private List<TLLogic.Phase> phases = new ArrayList<TLLogic.Phase>();
 
-    public List<TLLogic.Phase> getPhases() {
-        return phases;
-    }
+	public List<TLLogic.Phase> getPhases() {
+		return phases;
+	}
 
-    /**
-     * 30:G;5:y;30:r
-     * 
-     * @param string
-     * @return pharse list
-     */
-    public static TrafficLightPhases plan(String plan) {
-        TrafficLightPhases planoSemaforico = new TrafficLightPhases();
-        String[] pharses = plan.split(";");
-        for (String pharseInput : pharses) {
-            String[] parseArgs = pharseInput.split(":");
-            int duration = new Integer(parseArgs[0].trim());
-            String state = parseArgs[1].trim();
-            Phase pharse = new Phase();
-            pharse.setDuration(duration);
-            pharse.setState(state);
-            planoSemaforico.phases.add(pharse);
-        }
-        return planoSemaforico;
-    }
+	/**
+	 * 30:G;5:y;30:r
+	 * 
+	 * @param string
+	 * @return pharse list
+	 */
+	public static TrafficLightPhases plan(String planString) {
+		TrafficLightPhases plan = new TrafficLightPhases();
+		String[] pharses = planString.split(";");
+		for (String pharseInput : pharses) {
+			String[] parseArgs = pharseInput.split(":");
+			int duration = new Integer(parseArgs[0].trim());
+			String state = parseArgs[1].trim();
+			Phase pharse = new Phase();
+			pharse.setDuration(duration);
+			pharse.setState(state);
+			plan.phases.add(pharse);
+		}
+		return plan;
+	}
 
 }

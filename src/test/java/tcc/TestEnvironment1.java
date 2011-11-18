@@ -23,9 +23,9 @@ import java.util.List;
 
 import tcc.environment.Environment;
 import tcc.functionality.Simulator;
+import tcc.functionality.output.StatisticalOutput;
 import tcc.model.NetFile;
 import tcc.model.TrafficLightPhases;
-import tcc.rotinas.output.StatisticalOutput;
 
 public class TestEnvironment1 extends Environment {
     public static String path_teste_1 = "C:\\TCC\\cenarios\\teste-1\\";
@@ -58,7 +58,7 @@ public class TestEnvironment1 extends Environment {
     }
 
     @Override
-    public TrafficLightPhases getPlanoSemaforico(int gene_plano) {
+    public TrafficLightPhases getPlan(int gene_plano) {
         return PLANOS.get(gene_plano);
     }
 

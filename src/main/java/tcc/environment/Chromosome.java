@@ -44,7 +44,7 @@ public class Chromosome implements Cloneable {
 		return cached;
 	}
 
-	public void calculateTheAdaptabilityIndex(Environment environment) {
+	public void calculateTheFitnessIndex(Environment environment) {
 		fitnessIndex = getCachedFitnessIndex(environment);
 	}
 

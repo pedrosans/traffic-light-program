@@ -15,17 +15,36 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package tcc.rotinas.output;
+package tcc;
 
-import java.io.BufferedReader;
-import java.util.Map;
+import java.io.IOException;
 
-import tcc.functionality.Simulator.CmdParameter;
+public class Application {
 
-public interface SimulationOutput {
-    Map<CmdParameter, String> decorateCommandParameters(Map<CmdParameter, String> parameters);
+	public static class EndSignal extends Thread {
+		boolean signalized;
 
-    void readSilulationOutput(BufferedReader reader);
+		@Override
+		public void run() {
+			try {
+				System.in.read();
+				System.out.println("End signal received");
+				signalized = true;
+			} catch (IOException e) {
 
-    double getIndiceAdaptabilidade();
+			}
+		}
+
+		public boolean isSignalized() {
+			return signalized;
+		}
+	}
+
+	public static EndSignal endSignal;
+	static {
+		endSignal = new EndSignal();
+		endSignal.setDaemon(true);
+		endSignal.start();
+	}
+
 }

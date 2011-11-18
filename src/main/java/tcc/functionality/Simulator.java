@@ -24,8 +24,8 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
+import tcc.functionality.output.SimulationOutput;
 import tcc.model.NetFile;
-import tcc.rotinas.output.SimulationOutput;
 
 public class Simulator<T extends SimulationOutput> {
 

@@ -207,10 +207,10 @@ public class AGCaixeiroViajante {
 
 	private static void calculaIndicesAdaptabilidade() {
 
-		// for (int i = 0; i < cromossomos.length; i++) {
+		// for (int i = 0; i < chromosomes.length; i++) {
 		// indiceAdaptabilidade[i] = tamanhoQuadrado
 		// + 1
-		// - Estatistica.getVariancia(cromossomos[i], (int) Math
+		// - Estatistica.getVariancia(chromosomes[i], (int) Math
 		// .sqrt(tamanhoQuadrado));
 		// }
 

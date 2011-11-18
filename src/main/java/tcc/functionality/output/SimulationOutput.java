@@ -15,37 +15,17 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package tcc;
+package tcc.functionality.output;
 
-import java.io.IOException;
+import java.io.BufferedReader;
+import java.util.Map;
 
-public class Aplicacao {
+import tcc.functionality.Simulator.CmdParameter;
 
-	public static class EndSignal extends Thread {
-		boolean signalized;
+public interface SimulationOutput {
+    Map<CmdParameter, String> decorateCommandParameters(Map<CmdParameter, String> parameters);
 
-		@Override
-		public void run() {
-			try {
-				System.in.read();
-				System.out.println("sinal de parada recebido");
-				signalized = true;
-			} catch (IOException e) {
+    void readSilulationOutput(BufferedReader reader);
 
-			}
-		}
-
-		public boolean isSignalized() {
-			return signalized;
-		}
-	}
-
-	public static EndSignal endSignal;
-	static {
-		endSignal = new EndSignal();
-		endSignal.setDaemon(true);
-		endSignal.start();
-
-	}
-
+    double getIndiceAdaptabilidade();
 }

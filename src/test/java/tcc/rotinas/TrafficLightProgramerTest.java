@@ -30,8 +30,8 @@ public class TrafficLightProgramerTest {
 		Environment ambiente = new TestEnvironment1();
 
 		TrafficLightProgramer calibragem = new TrafficLightProgramer();
-		calibragem.setAmbiente(ambiente);
-		calibragem.executa();
+		calibragem.setEnvironment(ambiente);
+		calibragem.execute();
 
 	}
 }

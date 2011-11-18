@@ -37,7 +37,7 @@ public abstract class Environment {
 		return simulator;
 	}
 
-	public abstract TrafficLightPhases getPlanoSemaforico(int gene_plano);
+	public abstract TrafficLightPhases getPlan(int plan_gene);
 
 	public abstract int[] getGenesPlano(int locus);
 }

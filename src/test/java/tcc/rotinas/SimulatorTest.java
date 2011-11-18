@@ -26,8 +26,8 @@ import org.junit.Test;
 
 import tcc.TestEnvironment1;
 import tcc.functionality.Simulator;
+import tcc.functionality.output.StatisticalOutput;
 import tcc.model.NetFile;
-import tcc.rotinas.output.StatisticalOutput;
 
 public class SimulatorTest {
     @Test
