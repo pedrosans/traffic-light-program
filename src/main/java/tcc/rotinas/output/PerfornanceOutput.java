@@ -21,7 +21,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.Map;
 
-import tcc.rotinas.Simulator.CmdParameter;
+import tcc.functionality.Simulator.CmdParameter;
 
 public class PerfornanceOutput implements SimulationOutput {
 

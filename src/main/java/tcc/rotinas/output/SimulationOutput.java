@@ -20,7 +20,7 @@ package tcc.rotinas.output;
 import java.io.BufferedReader;
 import java.util.Map;
 
-import tcc.rotinas.Simulator.CmdParameter;
+import tcc.functionality.Simulator.CmdParameter;
 
 public interface SimulationOutput {
     Map<CmdParameter, String> decorateCommandParameters(Map<CmdParameter, String> parameters);

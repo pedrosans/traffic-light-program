@@ -25,6 +25,7 @@ import junit.framework.Assert;
 import org.junit.Test;
 
 import tcc.TestEnvironment1;
+import tcc.functionality.Simulator;
 import tcc.model.NetFile;
 import tcc.rotinas.output.StatisticalOutput;
 

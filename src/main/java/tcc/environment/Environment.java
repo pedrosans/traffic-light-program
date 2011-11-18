@@ -17,8 +17,8 @@
  */
 package tcc.environment;
 
+import tcc.functionality.Simulator;
 import tcc.model.TrafficLightPhases;
-import tcc.rotinas.Simulator;
 
 public abstract class Environment {
 

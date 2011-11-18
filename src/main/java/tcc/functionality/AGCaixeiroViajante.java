@@ -1,4 +1,4 @@
-package tcc.rotinas;
+package tcc.functionality;
 
 import java.util.Arrays;
 

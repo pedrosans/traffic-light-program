@@ -22,9 +22,9 @@ import java.util.Arrays;
 import java.util.List;
 
 import tcc.environment.Environment;
+import tcc.functionality.Simulator;
 import tcc.model.NetFile;
 import tcc.model.TrafficLightPhases;
-import tcc.rotinas.Simulator;
 import tcc.rotinas.output.StatisticalOutput;
 
 public class TestEnvironment1 extends Environment {

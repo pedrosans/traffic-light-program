@@ -21,6 +21,7 @@ import org.junit.Test;
 
 import tcc.TestEnvironment1;
 import tcc.environment.Environment;
+import tcc.functionality.TrafficLightProgramer;
 
 public class TrafficLightProgramerTest {
 

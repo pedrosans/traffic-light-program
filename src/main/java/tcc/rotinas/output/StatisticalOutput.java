@@ -24,9 +24,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import tcc.functionality.Simulator.CmdParameter;
 import tcc.model.TripInfos;
 import tcc.model.XStreamFacade;
-import tcc.rotinas.Simulator.CmdParameter;
 import tcc.util.IOUtil;
 import tcc.util.SD;
 
