@@ -15,32 +15,32 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package tcc.rotinas;
+package tcc.environment;
 
-import java.io.File;
-import java.io.IOException;
+import static org.junit.Assert.assertTrue;
 
-import junit.framework.Assert;
+import java.util.Arrays;
 
 import org.junit.Test;
 
 import tcc.TestEnvironment1;
-import tcc.functionality.Simulator;
-import tcc.functionality.output.StatisticalOutput;
-import tcc.model.NetFile;
+import tcc.environment.Chromosome;
+import tcc.environment.Genotype;
 
-public class SimulatorTest {
-    @Test
-    public void test() throws IOException {
-        NetFile netFile = new NetFile();
-        netFile.load(new File(TestEnvironment1.path_teste_1 + "example.net.xml"));
+public class ChromosomeTest {
 
-        Simulator<StatisticalOutput> simulador = new Simulator(new StatisticalOutput());
-        simulador.setNetFile(netFile);
-        simulador.setSumoConfigFile(new File(TestEnvironment1.path_teste_1 + "example.sumo.cfg"));
+	@Test
+	public void test() {
+		Chromosome cromossomo = new Chromosome();
+		TestEnvironment1 testEnvironment1 = new TestEnvironment1();
 
-        simulador.simula();
+		cromossomo.genotypes = Arrays.asList(new Genotype[] {//
+				new Genotype(0, 0), new Genotype(0, 0), new Genotype(0, 0) //
+				});
 
-        Assert.assertNotNull(simulador.getSimulationOutput().getResult());
-    }
+		cromossomo.calculateTheFitnessIndex(testEnvironment1);
+
+		assertTrue(cromossomo.fitnessIndex != 0);
+	}
+
 }
