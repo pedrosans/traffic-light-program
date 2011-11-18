@@ -24,21 +24,23 @@ import java.util.Arrays;
 import org.junit.Test;
 
 import tcc.TestEnvironment1;
+import tcc.environment.Chromosome;
+import tcc.environment.Genotype;
 
 public class ChromosomeTest {
 
-    @Test
-    public void test() {
-        Chromosome cromossomo = new Chromosome();
-        TestEnvironment1 testEnvironment1 = new TestEnvironment1();
+	@Test
+	public void test() {
+		Chromosome cromossomo = new Chromosome();
+		TestEnvironment1 testEnvironment1 = new TestEnvironment1();
 
-        cromossomo.genotipos = Arrays.asList(new Genotype[] {//
-                new Genotype(0, 0), new Genotype(0, 0), new Genotype(0, 0) //
-                });
+		cromossomo.genotypes = Arrays.asList(new Genotype[] {//
+				new Genotype(0, 0), new Genotype(0, 0), new Genotype(0, 0) //
+				});
 
-        cromossomo.calculateTheAdaptabilityIndex(testEnvironment1);
+		cromossomo.calculateTheAdaptabilityIndex(testEnvironment1);
 
-        assertTrue(cromossomo.indiceAdaptabilidade != 0);
-    }
+		assertTrue(cromossomo.fitnessIndex != 0);
+	}
 
 }

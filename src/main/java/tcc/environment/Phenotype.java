@@ -15,16 +15,21 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package tcc.ambiente;
+package tcc.environment;
 
 import tcc.model.TrafficLightPhases;
 
+/**
+ * How the genotype is observed in the environment
+ * 
+ * @author Pedro Santos
+ */
 public class Phenotype {
-    public int delay;
-    public TrafficLightPhases planoSemaforico;
+	public int delay;
+	public TrafficLightPhases plan;
 
-    public Phenotype(Genotype genotipo, Environment ambiente) {
-        this.delay = genotipo.gene_delay;
-        this.planoSemaforico = ambiente.getPlanoSemaforico(genotipo.gene_plano);
-    }
+	public Phenotype(Genotype genotipo, Environment ambiente) {
+		this.delay = genotipo.gene_delay;
+		this.plan = ambiente.getPlanoSemaforico(genotipo.gene_plan);
+	}
 }

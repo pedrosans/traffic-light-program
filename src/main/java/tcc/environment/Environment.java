@@ -15,30 +15,29 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package tcc.ambiente;
+package tcc.environment;
 
 import tcc.model.TrafficLightPhases;
 import tcc.rotinas.Simulator;
 
 public abstract class Environment {
 
-    public int qt_genotipos;
-    public int[] genes_delay;
+	/**
+	 * how may different genotypes there are in this environment
+	 */
+	public int genotypeNumber;
+	public int[] delays;
+	private Simulator<?> simulator;
 
-    private Simulator simulador;
+	public void setSimulator(Simulator<?> simulador) {
+		this.simulator = simulador;
+	}
 
-    public Environment() {
-    }
+	public Simulator<?> getSimulator() {
+		return simulator;
+	}
 
-    public void setSimulador(Simulator simulador) {
-        this.simulador = simulador;
-    }
+	public abstract TrafficLightPhases getPlanoSemaforico(int gene_plano);
 
-    public Simulator getSimulador() {
-        return simulador;
-    }
-
-    public abstract TrafficLightPhases getPlanoSemaforico(int gene_plano);
-
-    public abstract int[] getGenesPlano(int locus);
+	public abstract int[] getGenesPlano(int locus);
 }

@@ -21,7 +21,7 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
-import tcc.ambiente.Environment;
+import tcc.environment.Environment;
 import tcc.model.NetFile;
 import tcc.model.TrafficLightPhases;
 import tcc.rotinas.Simulator;
@@ -38,12 +38,12 @@ public class TestEnvironment1 extends Environment {
     private int[][] genes_plano;
 
     public TestEnvironment1() {
-        this.qt_genotipos = 3;
+        this.genotypeNumber = 3;
         this.genes_plano = new int[][] { {0, 1}, {0, 1}, {0, 1}};
         int range = 63;
-        this.genes_delay = new int[range];
-        for (int i = 0; i < genes_delay.length; i++) {
-            genes_delay[i] = i;
+        this.delays = new int[range];
+        for (int i = 0; i < delays.length; i++) {
+            delays[i] = i;
         }
 
         NetFile netFile = new NetFile();
@@ -54,7 +54,7 @@ public class TestEnvironment1 extends Environment {
         simulador.setNetFile(netFile);
         simulador.setSumoConfigFile(new File(TestEnvironment1.path_teste_1 + "example.sumo.cfg"));
 
-        setSimulador(simulador);
+        setSimulator(simulador);
     }
 
     @Override

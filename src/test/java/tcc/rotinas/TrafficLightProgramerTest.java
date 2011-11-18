@@ -20,7 +20,7 @@ package tcc.rotinas;
 import org.junit.Test;
 
 import tcc.TestEnvironment1;
-import tcc.ambiente.Environment;
+import tcc.environment.Environment;
 
 public class TrafficLightProgramerTest {
 

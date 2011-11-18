@@ -20,7 +20,7 @@ package tcc.model;
 import java.io.File;
 import java.util.List;
 
-import tcc.ambiente.Phenotype;
+import tcc.environment.Phenotype;
 import tcc.util.IOUtil;
 
 public class NetFile {
@@ -88,7 +88,7 @@ public class NetFile {
         for (int i = 0; i < fenotipos.size(); i++) {
             TLLogic tlLogic = programableNet.getTlLogics().get(i);
             Phenotype fenotipo = fenotipos.get(i);
-            tlLogic.setPhases(fenotipo.planoSemaforico.getPhases());
+            tlLogic.setPhases(fenotipo.plan.getPhases());
             tlLogic.setOffset(fenotipo.delay);
         }
         StringBuilder sb = new StringBuilder();
