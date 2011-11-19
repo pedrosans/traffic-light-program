@@ -40,7 +40,7 @@ public class Genotype implements Cloneable {
 	}
 
 	public void mutate(int locus, Environment environment) {
-		this.gene_plan = (int) ((Math.random() * Integer.MAX_VALUE) % environment.getGenesPlano(locus).length);
+		this.gene_plan = (int) ((Math.random() * Integer.MAX_VALUE) % environment.getPlanGenes(locus).length);
 		this.gene_delay = (int) ((Math.random() * Integer.MAX_VALUE) % environment.delays.length);
 	}
 

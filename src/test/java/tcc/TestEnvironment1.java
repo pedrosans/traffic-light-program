@@ -63,7 +63,7 @@ public class TestEnvironment1 extends Environment {
     }
 
     @Override
-    public int[] getGenesPlano(int locus) {
+    public int[] getPlanGenes(int locus) {
         return genes_plano[locus];
     }
 }

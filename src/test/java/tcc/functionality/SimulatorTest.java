@@ -39,7 +39,7 @@ public class SimulatorTest {
         simulador.setNetFile(netFile);
         simulador.setSumoConfigFile(new File(TestEnvironment1.path_teste_1 + "example.sumo.cfg"));
 
-        simulador.simula();
+        simulador.simulate();
 
         Assert.assertNotNull(simulador.getSimulationOutput().getResult());
     }

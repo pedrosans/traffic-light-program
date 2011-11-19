@@ -39,5 +39,5 @@ public abstract class Environment {
 
 	public abstract TrafficLightPhases getPlan(int plan_gene);
 
-	public abstract int[] getGenesPlano(int locus);
+	public abstract int[] getPlanGenes(int locus);
 }

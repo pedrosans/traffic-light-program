@@ -70,7 +70,7 @@ public class Simulator<T extends SimulationOutput> {
 		this.sumoConfigFile = sumoConfigFile;
 	}
 
-	public void simula() {
+	public void simulate() {
 		parameters.put(CmdParameter.CONFIG_FILE, sumoConfigFile.getPath());
 		parameters = simulationOutput.decorateCommandParameters(parameters);
 		String command = "sumo ";

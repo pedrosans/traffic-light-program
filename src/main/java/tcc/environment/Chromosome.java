@@ -37,7 +37,7 @@ public class Chromosome implements Cloneable {
 		Double cached = cache.get(this.hashCode());
 		if (cached == null) {
 			ambiente.getSimulator().getNetFile().program(getFenotipos(ambiente));
-			ambiente.getSimulator().simula();
+			ambiente.getSimulator().simulate();
 			cached = ambiente.getSimulator().getSimulationOutput().getIndiceAdaptabilidade();
 			cache.put(this.hashCode(), cached);
 		}
