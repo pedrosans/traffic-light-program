@@ -19,6 +19,9 @@ package tcc;
 
 import java.io.IOException;
 
+/**
+ * TODO move the entry point to here
+ */
 public class Application {
 
 	public static class EndSignal extends Thread {
