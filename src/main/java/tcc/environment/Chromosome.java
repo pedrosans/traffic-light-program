@@ -41,6 +41,8 @@ public class Chromosome implements Cloneable {
 			cached = ambiente.getSimulator().getSimulationOutput().getIndiceAdaptabilidade();
 			cache.put(this.hashCode(), cached);
 		}
+		// else
+		// System.out.println("returning chached one");
 		return cached;
 	}
 
@@ -56,7 +58,7 @@ public class Chromosome implements Cloneable {
 	public List<Phenotype> getFenotipos(Environment environment) {
 		List<Phenotype> phenotypes = new ArrayList<Phenotype>();
 		for (Genotype genotype : genotypes) {
-			phenotypes.add(new Phenotype(genotype, environment));
+			phenotypes.add(new Phenotype(genotype));
 		}
 		return phenotypes;
 	}
@@ -82,6 +84,8 @@ public class Chromosome implements Cloneable {
 	}
 
 	public String toString(boolean detatlhado) {
+		if (!detatlhado)
+			return genotypes.hashCode() + "";
 		String s = "";
 		for (Genotype g : genotypes) {
 			s += g.toString() + (detatlhado ? "\r\n" : "");

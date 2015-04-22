@@ -18,52 +18,26 @@
 package tcc;
 
 import java.io.File;
-import java.util.Arrays;
-import java.util.List;
 
 import tcc.environment.Environment;
 import tcc.functionality.Simulator;
 import tcc.functionality.output.StatisticalOutput;
 import tcc.model.NetFile;
-import tcc.model.TrafficLightPhases;
 
 public class TestEnvironment1 extends Environment {
-    public static String path_teste_1 = "C:\\TCC\\cenarios\\teste-1\\";
+	public static String path_teste_1 = "/home/poliveira/sumo/";
 
-    private static final TrafficLightPhases PLANO_1 = TrafficLightPhases.plan("30:G;3:y;30:r");
-    private static final TrafficLightPhases PLANO_2 = TrafficLightPhases.plan("15:G;3:y;15:r");
+	public TestEnvironment1() {
+		this.genotypeNumber = 3;
+		NetFile netFile = new NetFile();
+		netFile.load(new File(TestEnvironment1.path_teste_1 + "exemplo01.net.xml"));
 
-    public static final List<TrafficLightPhases> PLANOS = Arrays.asList(PLANO_1, PLANO_2);
+		// Simulador simulador = new Simulador(new PerfornanceOutput());
+		Simulator simulador = new Simulator(new StatisticalOutput());
+		simulador.setNetFile(netFile);
+		simulador.setSumoConfigFile(new File(TestEnvironment1.path_teste_1 + "exemplo01.sumo.cfg"));
 
-    private int[][] genes_plano;
+		setSimulator(simulador);
+	}
 
-    public TestEnvironment1() {
-        this.genotypeNumber = 3;
-        this.genes_plano = new int[][] { {0, 1}, {0, 1}, {0, 1}};
-        int range = 63;
-        this.delays = new int[range];
-        for (int i = 0; i < delays.length; i++) {
-            delays[i] = i;
-        }
-
-        NetFile netFile = new NetFile();
-        netFile.load(new File(TestEnvironment1.path_teste_1 + "example.net.xml"));
-
-        // Simulador simulador = new Simulador(new PerfornanceOutput());
-        Simulator simulador = new Simulator(new StatisticalOutput());
-        simulador.setNetFile(netFile);
-        simulador.setSumoConfigFile(new File(TestEnvironment1.path_teste_1 + "example.sumo.cfg"));
-
-        setSimulator(simulador);
-    }
-
-    @Override
-    public TrafficLightPhases getPlan(int gene_plano) {
-        return PLANOS.get(gene_plano);
-    }
-
-    @Override
-    public int[] getPlanGenes(int locus) {
-        return genes_plano[locus];
-    }
 }

@@ -18,6 +18,7 @@
 package tcc.functionality;
 
 import java.io.BufferedReader;
+import java.io.Console;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -42,20 +43,13 @@ public class Simulator<T extends SimulationOutput> {
 
 	NetFile netFile;
 	File sumoConfigFile;
-	Process cmd;
-	BufferedReader reader;
+	// Process process;
+	// BufferedReader reader;
 	Map<CmdParameter, String> parameters = new HashMap<Simulator.CmdParameter, String>();
 	T simulationOutput;
 
 	public Simulator(T simulationOutput) {
 		this.simulationOutput = simulationOutput;
-		Runtime runtime = Runtime.getRuntime();
-		try {
-			cmd = runtime.exec("cmd");
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
-		this.reader = new BufferedReader(new InputStreamReader(cmd.getInputStream()));
 	}
 
 	public NetFile getNetFile() {
@@ -77,13 +71,21 @@ public class Simulator<T extends SimulationOutput> {
 		for (CmdParameter parameter : parameters.keySet()) {
 			command += " " + parameter.parameterName + " " + parameters.get(parameter);
 		}
+		Runtime runtime = Runtime.getRuntime();
+		Process process;
 		try {
-			cmd.getOutputStream().write((command + "\r\n").getBytes());
-			cmd.getOutputStream().flush();
-		} catch (IOException e) {
+			process = runtime.exec(command);
+			System.out.print(".");
+			// process.getOutputStream ().write((command + "\n").getBytes());
+			// process.getOutputStream().flush();
+			BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+			process.waitFor();
+			process.exitValue();
+			simulationOutput.readSilulationOutput(reader);
+			process.destroy();
+		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
-		simulationOutput.readSilulationOutput(reader);
 	}
 
 	public T getSimulationOutput() {

@@ -26,6 +26,13 @@ public class TrafficLightPhases {
 
 	private List<TLLogic.Phase> phases = new ArrayList<TLLogic.Phase>();
 
+	public TrafficLightPhases() {
+	}
+
+	public TrafficLightPhases(List<Phase> gene_plano) {
+		this.phases = gene_plano;
+	}
+
 	public List<TLLogic.Phase> getPhases() {
 		return phases;
 	}

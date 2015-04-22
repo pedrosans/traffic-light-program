@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on Qui 26 Mar 2015 18:20:09 BRT by SUMO gui Version 0.22.0
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumo-gui.exeConfiguration.xsd">
+
+    <input>
+        <net-file value="/home/poliveira/sumo/busses/net.net.xml"/>
+        <route-files value="/home/poliveira/sumo/busses/input_routes.rou.xml"/>
+        <additional-files value="/home/poliveira/sumo/busses/input_additional.add.xml"/>
+    </input>
+
+    <output>
+        <vehroute-output value="/home/poliveira/sumo/busses/vehroutes.xml"/>
+        <save-state.prefix value="/home/poliveira/sumo/busses/state"/>
+    </output>
+
+    <report>
+        <xml-validation value="never"/>
+        <no-duration-log value="true"/>
+        <no-step-log value="true"/>
+    </report>
+
+    <emissions>
+        <phemlight-path value="/home/poliveira/sumo/busses/./PHEMlight/"/>
+    </emissions>
+
+</configuration>
+-->
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+    <vehicle id="horizontal.0" type="SUMO_DEFAULT_TYPE" depart="10.00" arrival="60.00">
+        <route edges="1/0to1/1 1/1to1/2"/>
+    </vehicle>
+
+    <vehicle id="vertical.0" type="SUMO_DEFAULT_TYPE" depart="10.00" arrival="62.00">
+        <route edges="1/2to1/1 1/1to1/0"/>
+    </vehicle>
+
+    <vehicle id="horizontal.1" type="SUMO_DEFAULT_TYPE" depart="20.00" arrival="63.00">
+        <route edges="1/0to1/1 1/1to1/2"/>
+    </vehicle>
+
+    <vehicle id="vertical.1" type="SUMO_DEFAULT_TYPE" depart="20.00" arrival="64.00">
+        <route edges="1/2to1/1 1/1to1/0"/>
+    </vehicle>
+
+    <vehicle id="horizontal.2" type="SUMO_DEFAULT_TYPE" depart="30.00" arrival="67.00">
+        <route edges="1/0to1/1 1/1to1/2"/>
+    </vehicle>
+
+    <vehicle id="vertical.2" type="SUMO_DEFAULT_TYPE" depart="30.00" arrival="67.00">
+        <route edges="1/2to1/1 1/1to1/0"/>
+    </vehicle>
+
+    <vehicle id="horizontal.3" type="SUMO_DEFAULT_TYPE" depart="40.00" arrival="77.00">
+        <route edges="1/0to1/1 1/1to1/2"/>
+    </vehicle>
+
+    <vehicle id="vertical.3" type="SUMO_DEFAULT_TYPE" depart="40.00" arrival="77.00">
+        <route edges="1/2to1/1 1/1to1/0"/>
+    </vehicle>
+
+    <vehicle id="horizontal.4" type="SUMO_DEFAULT_TYPE" depart="50.00" arrival="87.00">
+        <route edges="1/0to1/1 1/1to1/2"/>
+    </vehicle>
+
+    <vehicle id="vertical.4" type="SUMO_DEFAULT_TYPE" depart="50.00" arrival="87.00">
+        <route edges="1/2to1/1 1/1to1/0"/>
+    </vehicle>
+
+    <vehicle id="vertical.5" type="SUMO_DEFAULT_TYPE" depart="60.00" arrival="109.00">
+        <route edges="1/2to1/1 1/1to1/0"/>
+    </vehicle>
+
+    <vehicle id="vertical.6" type="SUMO_DEFAULT_TYPE" depart="70.00" arrival="111.00">
+        <route edges="1/2to1/1 1/1to1/0"/>
+    </vehicle>
+
+    <vehicle id="horizontal.5" type="SUMO_DEFAULT_TYPE" depart="64.00" arrival="120.00">
+        <route edges="1/0to1/1 1/1to1/2"/>
+    </vehicle>
+
+    <vehicle id="horizontal.6" type="SUMO_DEFAULT_TYPE" depart="70.00" arrival="122.00">
+        <route edges="1/0to1/1 1/1to1/2"/>
+    </vehicle>
+
+    <vehicle id="horizontal.7" type="SUMO_DEFAULT_TYPE" depart="80.00" arrival="123.00">
+        <route edges="1/0to1/1 1/1to1/2"/>
+    </vehicle>
+
+    <vehicle id="horizontal.8" type="SUMO_DEFAULT_TYPE" depart="90.00" arrival="127.00">
+        <route edges="1/0to1/1 1/1to1/2"/>
+    </vehicle>
+
+    <vehicle id="horizontal.9" type="SUMO_DEFAULT_TYPE" depart="100.00" arrival="137.00">
+        <route edges="1/0to1/1 1/1to1/2"/>
+    </vehicle>
+
+    <vehicle id="horizontal.10" type="SUMO_DEFAULT_TYPE" depart="111.00" arrival="154.00">
+        <route edges="1/0to1/1 1/1to1/2"/>
+    </vehicle>
+
+    <vehicle id="horizontal.11" type="SUMO_DEFAULT_TYPE" depart="120.00" arrival="157.00">
+        <route edges="1/0to1/1 1/1to1/2"/>
+    </vehicle>
+
+    <vehicle id="vertical.7" type="SUMO_DEFAULT_TYPE" depart="80.00" arrival="159.00">
+        <route edges="1/2to1/1 1/1to1/0"/>
+    </vehicle>
+
+    <vehicle id="vertical.8" type="SUMO_DEFAULT_TYPE" depart="90.00" arrival="161.00">
+        <route edges="1/2to1/1 1/1to1/0"/>
+    </vehicle>
+
+    <vehicle id="vertical.9" type="SUMO_DEFAULT_TYPE" depart="100.00" arrival="162.00">
+        <route edges="1/2to1/1 1/1to1/0"/>
+    </vehicle>
+
+    <vehicle id="vertical.10" type="SUMO_DEFAULT_TYPE" depart="110.00" arrival="163.00">
+        <route edges="1/2to1/1 1/1to1/0"/>
+    </vehicle>
+
+    <vehicle id="vertical.11" type="SUMO_DEFAULT_TYPE" depart="123.00" arrival="165.00">
+        <route edges="1/2to1/1 1/1to1/0"/>
+    </vehicle>
+
+    <vehicle id="vertical.12" type="SUMO_DEFAULT_TYPE" depart="130.00" arrival="167.00">
+        <route edges="1/2to1/1 1/1to1/0"/>
+    </vehicle>
+
+    <vehicle id="horizontal.12" type="SUMO_DEFAULT_TYPE" depart="130.00" arrival="171.00">
+        <route edges="1/0to1/1 1/1to1/2"/>
+    </vehicle>
+
+    <vehicle id="vertical.13" type="SUMO_DEFAULT_TYPE" depart="140.00" arrival="177.00">
+        <route edges="1/2to1/1 1/1to1/0"/>
+    </vehicle>
+
+    <vehicle id="horizontal.13" type="SUMO_DEFAULT_TYPE" depart="140.00" arrival="179.00">
+        <route edges="1/0to1/1 1/1to1/2"/>
+    </vehicle>
+
+    <vehicle id="vertical.14" type="SUMO_DEFAULT_TYPE" depart="150.00" arrival="187.00">
+        <route edges="1/2to1/1 1/1to1/0"/>
+    </vehicle>
+
+    <vehicle id="vertical.15" type="SUMO_DEFAULT_TYPE" depart="160.00" arrival="203.00">
+        <route edges="1/2to1/1 1/1to1/0"/>
+    </vehicle>
+
+    <vehicle id="always_left.0" type="SUMO_DEFAULT_TYPE" depart="1.00" arrival="204.00">
+        <route edges="0/0to0/1 0/1to1/1 1/1to2/1 2/1to2/2 2/2to1/2 1/2to1/1 1/1to1/0"/>
+    </vehicle>
+
+    <vehicle id="always_left.1" type="SUMO_DEFAULT_TYPE" depart="11.00" arrival="206.00">
+        <route edges="0/0to0/1 0/1to1/1 1/1to2/1 2/1to2/2 2/2to1/2 1/2to1/1 1/1to1/0"/>
+    </vehicle>
+
+    <vehicle id="always_left.2" type="SUMO_DEFAULT_TYPE" depart="21.00" arrival="207.00">
+        <route edges="0/0to0/1 0/1to1/1 1/1to2/1 2/1to2/2 2/2to1/2 1/2to1/1 1/1to1/0"/>
+    </vehicle>
+
+    <vehicle id="always_left.3" type="SUMO_DEFAULT_TYPE" depart="31.00" arrival="208.00">
+        <route edges="0/0to0/1 0/1to1/1 1/1to2/1 2/1to2/2 2/2to1/2 1/2to1/1 1/1to1/0"/>
+    </vehicle>
+
+    <vehicle id="always_left.4" type="SUMO_DEFAULT_TYPE" depart="41.00" arrival="210.00">
+        <route edges="0/0to0/1 0/1to1/1 1/1to2/1 2/1to2/2 2/2to1/2 1/2to1/1 1/1to1/0"/>
+    </vehicle>
+
+    <vehicle id="horizontal.14" type="SUMO_DEFAULT_TYPE" depart="150.00" arrival="217.00">
+        <route edges="1/0to1/1 1/1to1/2"/>
+    </vehicle>
+
+    <vehicle id="horizontal.15" type="SUMO_DEFAULT_TYPE" depart="167.00" arrival="219.00">
+        <route edges="1/0to1/1 1/1to1/2"/>
+    </vehicle>
+
+    <vehicle id="horizontal.16" type="SUMO_DEFAULT_TYPE" depart="171.00" arrival="220.00">
+        <route edges="1/0to1/1 1/1to1/2"/>
+    </vehicle>
+
+    <vehicle id="horizontal.17" type="SUMO_DEFAULT_TYPE" depart="180.00" arrival="221.00">
+        <route edges="1/0to1/1 1/1to1/2"/>
+    </vehicle>
+
+    <vehicle id="horizontal.18" type="SUMO_DEFAULT_TYPE" depart="190.00" arrival="227.00">
+        <route edges="1/0to1/1 1/1to1/2"/>
+    </vehicle>
+
+    <vehicle id="horizontal.19" type="SUMO_DEFAULT_TYPE" depart="200.00" arrival="238.00">
+        <route edges="1/0to1/1 1/1to1/2"/>
+    </vehicle>
+
+    <vehicle id="0" type="BUS" depart="0.00" arrival="240.00">
+        <route edges="2/0to2/1 2/1to1/1 1/1to1/2 1/2to0/2 0/2to0/1 0/1to0/0 0/0to1/0 1/0to2/0 2/0to2/1"/>
+    </vehicle>
+
+    <vehicle id="always_right.0" type="SUMO_DEFAULT_TYPE" depart="2.00" arrival="248.00">
+        <route edges="2/0to2/1 2/1to1/1 1/1to1/2 1/2to0/2 0/2to0/1 0/1to0/0 0/0to1/0 1/0to2/0 2/0to2/1"/>
+    </vehicle>
+
+    <vehicle id="vertical.16" type="SUMO_DEFAULT_TYPE" depart="179.00" arrival="256.00">
+        <route edges="1/2to1/1 1/1to1/0"/>
+    </vehicle>
+
+    <vehicle id="vertical.17" type="SUMO_DEFAULT_TYPE" depart="187.00" arrival="258.00">
+        <route edges="1/2to1/1 1/1to1/0"/>
+    </vehicle>
+
+    <vehicle id="always_left.5" type="SUMO_DEFAULT_TYPE" depart="51.00" arrival="259.00">
+        <route edges="0/0to0/1 0/1to1/1 1/1to2/1 2/1to2/2 2/2to1/2 1/2to1/1 1/1to1/0"/>
+    </vehicle>
+
+    <vehicle id="always_left.6" type="SUMO_DEFAULT_TYPE" depart="61.00" arrival="260.00">
+        <route edges="0/0to0/1 0/1to1/1 1/1to2/1 2/1to2/2 2/2to1/2 1/2to1/1 1/1to1/0"/>
+    </vehicle>
+
+    <vehicle id="always_left.7" type="SUMO_DEFAULT_TYPE" depart="71.00" arrival="262.00">
+        <route edges="0/0to0/1 0/1to1/1 1/1to2/1 2/1to2/2 2/2to1/2 1/2to1/1 1/1to1/0"/>
+    </vehicle>
+
+    <vehicle id="always_left.8" type="SUMO_DEFAULT_TYPE" depart="81.00" arrival="263.00">
+        <route edges="0/0to0/1 0/1to1/1 1/1to2/1 2/1to2/2 2/2to1/2 1/2to1/1 1/1to1/0"/>
+    </vehicle>
+
+    <vehicle id="vertical.18" type="SUMO_DEFAULT_TYPE" depart="199.00" arrival="264.00">
+        <route edges="1/2to1/1 1/1to1/0"/>
+    </vehicle>
+
+    <vehicle id="vertical.19" type="SUMO_DEFAULT_TYPE" depart="203.00" arrival="266.00">
+        <route edges="1/2to1/1 1/1to1/0"/>
+    </vehicle>
+
+    <vehicle id="always_left.9" type="SUMO_DEFAULT_TYPE" depart="91.00" arrival="267.00">
+        <route edges="0/0to0/1 0/1to1/1 1/1to2/1 2/1to2/2 2/2to1/2 1/2to1/1 1/1to1/0"/>
+    </vehicle>
+
+    <vehicle id="1" type="BUS" depart="8.00" arrival="271.00">
+        <route edges="2/0to2/1 2/1to1/1 1/1to1/2 1/2to0/2 0/2to0/1 0/1to0/0 0/0to1/0 1/0to2/0 2/0to2/1"/>
+    </vehicle>
+
+    <vehicle id="2" type="BUS" depart="12.00" arrival="307.00">
+        <route edges="2/0to2/1 2/1to1/1 1/1to1/2 1/2to0/2 0/2to0/1 0/1to0/0 0/0to1/0 1/0to2/0 2/0to2/1"/>
+    </vehicle>
+
+    <vehicle id="always_right.1" type="SUMO_DEFAULT_TYPE" depart="14.00" arrival="315.00">
+        <route edges="2/0to2/1 2/1to1/1 1/1to1/2 1/2to0/2 0/2to0/1 0/1to0/0 0/0to1/0 1/0to2/0 2/0to2/1"/>
+    </vehicle>
+
+    <vehicle id="always_right.2" type="SUMO_DEFAULT_TYPE" depart="21.00" arrival="316.00">
+        <route edges="2/0to2/1 2/1to1/1 1/1to1/2 1/2to0/2 0/2to0/1 0/1to0/0 0/0to1/0 1/0to2/0 2/0to2/1"/>
+    </vehicle>
+
+    <vehicle id="always_right.3" type="SUMO_DEFAULT_TYPE" depart="31.00" arrival="318.00">
+        <route edges="2/0to2/1 2/1to1/1 1/1to1/2 1/2to0/2 0/2to0/1 0/1to0/0 0/0to1/0 1/0to2/0 2/0to2/1"/>
+    </vehicle>
+
+    <vehicle id="always_right.4" type="SUMO_DEFAULT_TYPE" depart="41.00" arrival="319.00">
+        <route edges="2/0to2/1 2/1to1/1 1/1to1/2 1/2to0/2 0/2to0/1 0/1to0/0 0/0to1/0 1/0to2/0 2/0to2/1"/>
+    </vehicle>
+
+    <vehicle id="always_right.5" type="SUMO_DEFAULT_TYPE" depart="51.00" arrival="320.00">
+        <route edges="2/0to2/1 2/1to1/1 1/1to1/2 1/2to0/2 0/2to0/1 0/1to0/0 0/0to1/0 1/0to2/0 2/0to2/1"/>
+    </vehicle>
+
+    <vehicle id="always_right.6" type="SUMO_DEFAULT_TYPE" depart="61.00" arrival="323.00">
+        <route edges="2/0to2/1 2/1to1/1 1/1to1/2 1/2to0/2 0/2to0/1 0/1to0/0 0/0to1/0 1/0to2/0 2/0to2/1"/>
+    </vehicle>
+
+    <vehicle id="always_right.7" type="SUMO_DEFAULT_TYPE" depart="71.00" arrival="324.00">
+        <route edges="2/0to2/1 2/1to1/1 1/1to1/2 1/2to0/2 0/2to0/1 0/1to0/0 0/0to1/0 1/0to2/0 2/0to2/1"/>
+    </vehicle>
+
+    <vehicle id="always_right.8" type="SUMO_DEFAULT_TYPE" depart="81.00" arrival="325.00">
+        <route edges="2/0to2/1 2/1to1/1 1/1to1/2 1/2to0/2 0/2to0/1 0/1to0/0 0/0to1/0 1/0to2/0 2/0to2/1"/>
+    </vehicle>
+
+    <vehicle id="always_right.9" type="SUMO_DEFAULT_TYPE" depart="91.00" arrival="327.00">
+        <route edges="2/0to2/1 2/1to1/1 1/1to1/2 1/2to0/2 0/2to0/1 0/1to0/0 0/0to1/0 1/0to2/0 2/0to2/1"/>
+    </vehicle>
+
+</routes>

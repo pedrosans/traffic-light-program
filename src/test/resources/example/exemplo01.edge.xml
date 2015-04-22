@@ -1,0 +1,8 @@
+<edges>
+
+   <edge id="e10" from="1" to="t1" priority="2" nolanes="1" speed="10.00"/>
+   <edge id="e11" from="t1" to="tm" priority="2" nolanes="1" speed="10.00"/>
+   <edge id="e20" from="tm" to="t2" priority="1" nolanes="1" speed="10.00"/>
+   <edge id="e21" from="t2" to="2" priority="1" nolanes="1" speed="10.00"/>
+   
+</edges>

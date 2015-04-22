@@ -1,0 +1,6 @@
+<connections>
+
+   <connection from="ev1" to="ev2"/>
+   <connection from="eh1" to="eh2"/>
+
+</connections>

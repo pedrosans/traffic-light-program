@@ -64,11 +64,21 @@ public class TripInfos {
 		this.tripInfos = tripInfo;
 	}
 
+	/**
+	 * <tripinfo id="always_right.98" depart="18173.00" departLane="e10_0"
+	 * departPos="5.10" departSpeed="0.00" departDelay="18163.20"
+	 * arrival="30392.00" arrivalLane="e21_0" arrivalPos="100.00"
+	 * arrivalSpeed="9.63" duration="12219.00" routeLength="394.90"
+	 * waitSteps="11769" timeLoss="12174.50" rerouteNo="0"
+	 * devices="tripinfo_always_right.98" vType="type1" vaporized=""/>
+	 */
 	@XStreamAlias("tripinfo")
 	public static class TripInfo {
 
 		@XStreamAsAttribute
 		private double routeLength;
+		@XStreamAsAttribute
+		private double duration;
 		@XStreamAsAttribute
 		private int waitSteps;
 
@@ -86,6 +96,10 @@ public class TripInfos {
 
 		public void setWaitSteps(int waitSteps) {
 			this.waitSteps = waitSteps;
+		}
+
+		public double getSpeed() {
+			return routeLength / duration;
 		}
 
 	}

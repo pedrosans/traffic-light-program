@@ -27,7 +27,7 @@ import com.thoughtworks.xstream.annotations.XStreamImplicit;
 @XStreamAlias("net")
 public class Net implements Cloneable {
 
-	@XStreamImplicit(itemFieldName = "tl-logic")
+	@XStreamImplicit(itemFieldName = "tlLogic")
 	private List<TLLogic> tlLogics = new ArrayList<TLLogic>();
 
 	public List<TLLogic> getTlLogics() {

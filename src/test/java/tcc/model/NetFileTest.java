@@ -45,8 +45,8 @@ public class NetFileTest {
 
 		Genotype genotipo = new Genotype();
 		genotipo.gene_delay = 0;
-		genotipo.gene_plan = 0;
-		Phenotype fenotipo = new Phenotype(genotipo, ambienteTeste1);
+		genotipo.gene_plan = null;
+		Phenotype fenotipo = new Phenotype(genotipo);
 		List<Phenotype> fenotipos = Arrays.asList(new Phenotype[] { fenotipo, fenotipo, fenotipo });
 
 		ambienteTeste1.getSimulator().getNetFile().program(fenotipos);

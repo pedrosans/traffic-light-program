@@ -18,7 +18,6 @@
 package tcc.environment;
 
 import tcc.functionality.Simulator;
-import tcc.model.TrafficLightPhases;
 
 public abstract class Environment {
 
@@ -26,7 +25,6 @@ public abstract class Environment {
 	 * how may different genotypes there are in this environment
 	 */
 	public int genotypeNumber;
-	public int[] delays;
 	private Simulator<?> simulator;
 
 	public void setSimulator(Simulator<?> simulador) {
@@ -36,8 +34,4 @@ public abstract class Environment {
 	public Simulator<?> getSimulator() {
 		return simulator;
 	}
-
-	public abstract TrafficLightPhases getPlan(int plan_gene);
-
-	public abstract int[] getPlanGenes(int locus);
 }

@@ -1,0 +1,7 @@
+<connections>
+
+   <connection from="e10" to="e11"/>
+   <connection from="e11" to="e20"/>
+   <connection from="e20" to="e21"/>
+
+</connections>

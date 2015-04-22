@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+
+<!-- generated on 10/10/11 16:06:19 by SUMO netconvert Version 0.12.3
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.sf.net/xsd/netconvertConfiguration.xsd">
+
+    <input>
+        <xml-node-files value="example.nod.xml"/>
+        <xml-edge-files value="example.edge.xml"/>
+        <xml-connection-files value="example.con.xml"/>
+    </input>
+
+    <output>
+        <output-file value="example.net.xml"/>
+    </output>
+
+</configuration>
+-->
+
+<net>
+
+   <location netOffset="100.00,100.00" convBoundary="0.00,0.00,200.00,150.00" origBoundary="-100.00,-100.00,100.00,50.00" projParameter="!"/>
+
+   <edge id=":tm_0" function="internal">
+      <lanes>
+         <lane id=":tm_0_0" depart="0" maxspeed="10.00" length="6.20" shape="98.35,101.45 98.35,95.25"/>
+      </lanes>
+   </edge>
+   <edge id=":tm_1" function="internal">
+      <lanes>
+         <lane id=":tm_1_0" depart="0" maxspeed="10.00" length="6.20" shape="95.25,98.35 101.45,98.35"/>
+      </lanes>
+   </edge>
+
+   <edge id="eh1" from="h1" to="tm" priority="2" type="" function="normal">
+      <lanes>
+         <lane id="eh1_0" depart="1" maxspeed="10.00" length="95.25" shape="0.00,98.35 95.25,98.35"/>
+      </lanes>
+   </edge>
+   <edge id="eh2" from="tm" to="h2" priority="2" type="" function="normal">
+      <lanes>
+         <lane id="eh2_0" depart="1" maxspeed="10.00" length="98.55" shape="101.45,98.35 200.00,98.35"/>
+      </lanes>
+   </edge>
+   <edge id="ev1" from="v1" to="tm" priority="1" type="" function="normal">
+      <lanes>
+         <lane id="ev1_0" depart="1" maxspeed="10.00" length="48.55" shape="98.35,150.00 98.35,101.45"/>
+      </lanes>
+   </edge>
+   <edge id="ev2" from="tm" to="v2" priority="1" type="" function="normal">
+      <lanes>
+         <lane id="ev2_0" depart="1" maxspeed="10.00" length="95.25" shape="98.35,95.25 98.35,0.00"/>
+      </lanes>
+   </edge>
+
+   <row-logic id="tm" requestSize="2" laneNumber="2">
+      <logic>
+         <logicitem request="0" response="10" foes="10" cont="0"/>
+         <logicitem request="1" response="00" foes="01" cont="0"/>
+      </logic>
+   </row-logic>
+
+   <tl-logic id="tm" type="static" programID="0" offset="0">
+      <phase duration="31" state="Gr"/>
+      <phase duration="3" state="yr"/>
+      <phase duration="31" state="rG"/>
+      <phase duration="3" state="ry"/>
+   </tl-logic>
+
+   <junction id="h1" type="DEAD_END" x="0.00" y="100.00" incLanes="" intLanes="" shape="0.00,99.95 0.00,96.75"/>
+   <junction id="h2" type="DEAD_END" x="200.00" y="100.00" incLanes="eh2_0" intLanes="" shape="200.00,96.75 200.00,99.95"/>
+   <junction id="tm" type="priority" x="100.00" y="100.00" incLanes="ev1_0 eh1_0" intLanes=":tm_0_0 :tm_1_0" shape="96.75,101.45 99.95,101.45 101.45,99.95 101.45,96.75 99.95,95.25 96.75,95.25 95.25,96.75 95.25,99.95"/>
+   <junction id="v1" type="DEAD_END" x="100.00" y="150.00" incLanes="" intLanes="" shape="99.95,150.00 96.75,150.00"/>
+   <junction id="v2" type="DEAD_END" x="100.00" y="0.00" incLanes="ev2_0" intLanes="" shape="96.75,-0.00 99.95,-0.00"/>
+
+   <succ edge="eh1" lane="eh1_0" junction="tm">
+      <succlane lane="eh2_0" via=":tm_1_0" tl="tm" linkno="1" yield="1" dir="s" state="t"/>
+   </succ>
+   <succ edge="eh2" lane="eh2_0" junction="h2">
+      <succlane lane="SUMO_NO_DESTINATION" yield="1" dir="s" state="O"/>
+   </succ>
+   <succ edge="ev1" lane="ev1_0" junction="tm">
+      <succlane lane="ev2_0" via=":tm_0_0" tl="tm" linkno="0" yield="1" dir="s" state="t"/>
+   </succ>
+   <succ edge="ev2" lane="ev2_0" junction="v2">
+      <succlane lane="SUMO_NO_DESTINATION" yield="1" dir="s" state="O"/>
+   </succ>
+
+   <succ edge=":tm_0" lane=":tm_0_0" junction="tm">
+      <succlane lane="ev2_0" tl="" linkno="" yield="0" dir="s" state="M"/>
+   </succ>
+   <succ edge=":tm_1" lane=":tm_1_0" junction="tm">
+      <succlane lane="eh2_0" tl="" linkno="" yield="0" dir="s" state="M"/>
+   </succ>
+
+</net>

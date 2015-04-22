@@ -19,15 +19,14 @@ package tcc.functionality;
 
 import org.junit.Test;
 
-import tcc.TestEnvironment1;
+import tcc.Environments;
 import tcc.environment.Environment;
-import tcc.functionality.TrafficLightProgramer;
 
 public class TrafficLightProgramerTest {
 
 	@Test
 	public void test() {
-		Environment ambiente = new TestEnvironment1();
+		Environment ambiente = new Environments.Binario();
 
 		TrafficLightProgramer calibragem = new TrafficLightProgramer();
 		calibragem.setEnvironment(ambiente);

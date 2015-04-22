@@ -1,0 +1,9 @@
+<nodes> 
+   <node id="t1" x="-100.0" y="0.0" type="traffic_light"/> <!-- def. of node "0" -->
+   <node id="tm" x="0.0" y="0.0" type="traffic_light"/> <!-- def. of node "0" -->
+   <node id="t2" x="100.0" y="0.0" type="traffic_light"/> <!-- def. of node "0" -->
+
+   <node id="1" x="-200.0" y="0.0" type="priority"/> <!-- def. of node "1" -->
+   <node id="2" x="+200.0" y="0.0" type="priority"/> <!-- def. of node "2" -->
+
+</nodes> <!-- The closing tag -->

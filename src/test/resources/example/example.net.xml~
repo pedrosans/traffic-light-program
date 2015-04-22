@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+
+<!-- generated on 09/19/11 16:51:45 by SUMO netconvert Version 0.12.3
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.sf.net/xsd/netconvertConfiguration.xsd">
+
+    <input>
+        <xml-node-files value="example.nod.xml"/>
+        <xml-edge-files value="example.edge.xml"/>
+        <xml-connection-files value="example.con.xml"/>
+    </input>
+
+    <output>
+        <output-file value="example.net.xml"/>
+    </output>
+
+</configuration>
+-->
+
+<net>
+
+   <location netOffset="200.00,0.00" convBoundary="0.00,0.00,400.00,0.00" origBoundary="-200.00,0.00,200.00,0.00" projParameter="!"/>
+
+   <edge id=":t1_0" function="internal">
+      <lanes>
+         <lane id=":t1_0_0" depart="0" maxspeed="10.00" length="0.10" shape="100.00,-1.65 100.00,-1.65"/>
+      </lanes>
+   </edge>
+   <edge id=":t2_0" function="internal">
+      <lanes>
+         <lane id=":t2_0_0" depart="0" maxspeed="10.00" length="0.10" shape="300.00,-1.65 300.00,-1.65"/>
+      </lanes>
+   </edge>
+   <edge id=":tm_0" function="internal">
+      <lanes>
+         <lane id=":tm_0_0" depart="0" maxspeed="10.00" length="0.10" shape="200.00,-1.65 200.00,-1.65"/>
+      </lanes>
+   </edge>
+
+   <edge id="e10" from="1" to="t1" priority="2" type="" function="normal">
+      <lanes>
+         <lane id="e10_0" depart="1" maxspeed="10.00" length="100.00" shape="0.00,-1.65 100.00,-1.65"/>
+      </lanes>
+   </edge>
+   <edge id="e11" from="t1" to="tm" priority="2" type="" function="normal">
+      <lanes>
+         <lane id="e11_0" depart="1" maxspeed="10.00" length="100.00" shape="100.00,-1.65 200.00,-1.65"/>
+      </lanes>
+   </edge>
+   <edge id="e20" from="tm" to="t2" priority="1" type="" function="normal">
+      <lanes>
+         <lane id="e20_0" depart="1" maxspeed="10.00" length="100.00" shape="200.00,-1.65 300.00,-1.65"/>
+      </lanes>
+   </edge>
+   <edge id="e21" from="t2" to="2" priority="1" type="" function="normal">
+      <lanes>
+         <lane id="e21_0" depart="1" maxspeed="10.00" length="100.00" shape="300.00,-1.65 400.00,-1.65"/>
+      </lanes>
+   </edge>
+
+   <row-logic id="t1" requestSize="1" laneNumber="1">
+      <logic>
+         <logicitem request="0" response="0" foes="0" cont="0"/>
+      </logic>
+   </row-logic>
+   <row-logic id="t2" requestSize="1" laneNumber="1">
+      <logic>
+         <logicitem request="0" response="0" foes="0" cont="0"/>
+      </logic>
+   </row-logic>
+   <row-logic id="tm" requestSize="1" laneNumber="1">
+      <logic>
+         <logicitem request="0" response="0" foes="0" cont="0"/>
+      </logic>
+   </row-logic>
+
+   <tl-logic id="t1" type="static" programID="0" offset="29">
+  <phase duration="15" state="G"/>
+  <phase duration="3" state="y"/>
+  <phase duration="15" state="r"/>
+</tl-logic>
+<tl-logic id="t2" type="static" programID="0" offset="61">
+  <phase duration="15" state="G"/>
+  <phase duration="3" state="y"/>
+  <phase duration="15" state="r"/>
+</tl-logic>
+<tl-logic id="tm" type="static" programID="0" offset="19">
+  <phase duration="15" state="G"/>
+  <phase duration="3" state="y"/>
+  <phase duration="15" state="r"/>
+</tl-logic><junction id="1" type="DEAD_END" x="0.00" y="0.00" incLanes="" intLanes="" shape="0.00,-0.05 0.00,-3.25"/>
+   <junction id="2" type="DEAD_END" x="400.00" y="0.00" incLanes="e21_0" intLanes="" shape="400.00,-3.25 400.00,-0.05"/>
+   <junction id="t1" type="priority" x="100.00" y="0.00" incLanes="e10_0" intLanes=":t1_0_0" shape="100.00,-0.05 100.00,-3.25 100.00,-0.05"/>
+   <junction id="t2" type="priority" x="300.00" y="0.00" incLanes="e20_0" intLanes=":t2_0_0" shape="300.00,-0.05 300.00,-3.25 300.00,-0.05"/>
+   <junction id="tm" type="priority" x="200.00" y="0.00" incLanes="e11_0" intLanes=":tm_0_0" shape="200.00,-0.05 200.00,-3.25 200.00,-0.05"/>
+
+   <succ edge="e10" lane="e10_0" junction="t1">
+      <succlane lane="e11_0" via=":t1_0_0" tl="t1" linkno="0" yield="1" dir="s" state="t"/>
+   </succ>
+   <succ edge="e11" lane="e11_0" junction="tm">
+      <succlane lane="e20_0" via=":tm_0_0" tl="tm" linkno="0" yield="1" dir="s" state="t"/>
+   </succ>
+   <succ edge="e20" lane="e20_0" junction="t2">
+      <succlane lane="e21_0" via=":t2_0_0" tl="t2" linkno="0" yield="1" dir="s" state="t"/>
+   </succ>
+   <succ edge="e21" lane="e21_0" junction="2">
+      <succlane lane="SUMO_NO_DESTINATION" yield="1" dir="s" state="O"/>
+   </succ>
+
+   <succ edge=":t1_0" lane=":t1_0_0" junction="t1">
+      <succlane lane="e11_0" tl="" linkno="" yield="0" dir="s" state="M"/>
+   </succ>
+   <succ edge=":t2_0" lane=":t2_0_0" junction="t2">
+      <succlane lane="e21_0" tl="" linkno="" yield="0" dir="s" state="M"/>
+   </succ>
+   <succ edge=":tm_0" lane=":tm_0_0" junction="tm">
+      <succlane lane="e20_0" tl="" linkno="" yield="0" dir="s" state="M"/>
+   </succ>
+
+</net>

@@ -17,36 +17,69 @@
  */
 package tcc.environment;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+import tcc.model.TLLogic.Phase;
+
 /**
  * Genotype modeling needed attributes for the phenotype
  * 
  * @author Pedro Santos
  */
 public class Genotype implements Cloneable {
-	public int gene_plan;
+	public List<Phase> gene_plan;
 	public int gene_delay;
+	private static final char[] LIGHTS = new char[] { 'r', 'y', 'G' };
 
 	public Genotype() {
 	}
 
-	public Genotype(int plano, int delay) {
+	public Genotype(List<Phase> plano, int delay) {
 		this.gene_plan = plano;
 		this.gene_delay = delay;
 	}
 
 	@Override
-	protected Genotype clone() {
-		return new Genotype(gene_plan, gene_delay);
+	public Genotype clone() {
+		ArrayList<Phase> copy = new ArrayList();
+		for (Phase phase : gene_plan)
+			copy.add(phase.clone());
+		return new Genotype(copy, gene_delay);
 	}
 
 	public void mutate(int locus, Environment environment) {
-		this.gene_plan = (int) ((Math.random() * Integer.MAX_VALUE) % environment.getPlanGenes(locus).length);
-		this.gene_delay = (int) ((Math.random() * Integer.MAX_VALUE) % environment.delays.length);
+		// Phase phase = this.gene_plan.get(new
+		// Random().nextInt(this.gene_plan.size()));
+		for (Phase phase : this.gene_plan) {
+			int qualInt = new Random().nextInt(3);
+			int nextInt = new Random().nextInt(Integer.MAX_VALUE);
+			if (qualInt == 0) {
+				if (nextInt % 2 == 0) {
+					phase.setDuration(Math.min(30, phase.getDuration() + 1));
+				} else {
+					phase.setDuration(Math.max(1, phase.getDuration() - 1));
+				}
+			} else if (qualInt == 1) {
+				int qt = new Random().nextInt(15);
+				if (nextInt % 2 == 0) {
+					gene_delay = (Math.min(30, gene_delay + qt));
+				} else {
+					gene_delay = (Math.max(1, gene_delay - qt));
+				}
+			} else {
+				char[] chars = phase.getState().toCharArray();
+				int index = nextInt % chars.length;
+				chars[index] = LIGHTS[new Random().nextInt(3)];
+				phase.setState(new String(chars));
+			}
+		}
 	}
 
 	@Override
 	public String toString() {
-		return "G-[plan=" + gene_plan + ", delay=" + gene_delay + "]";
+		return "G-[plan=" + gene_plan.hashCode() + ", delay=" + gene_delay + "]";
 	}
 
 	@Override
@@ -54,7 +87,7 @@ public class Genotype implements Cloneable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + gene_delay;
-		result = prime * result + gene_plan;
+		result = prime * result + gene_plan.hashCode();
 		return result;
 	}
 

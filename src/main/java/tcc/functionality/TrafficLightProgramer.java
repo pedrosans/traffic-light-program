@@ -2,6 +2,7 @@ package tcc.functionality;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import tcc.Application;
 import tcc.environment.Chromosome;
@@ -12,7 +13,7 @@ import tcc.model.TLLogic;
 public class TrafficLightProgramer {
 
 	Environment environment;
-	int populationSize = 50;
+	int populationSize = 100;
 	List<Chromosome> chromosomes;
 	List<Chromosome> newChromosomes;
 	long[] interactions;
@@ -34,6 +35,7 @@ public class TrafficLightProgramer {
 
 		while (iteration.doContinue()) {
 			iteration.calculateTheFitnessIndex();
+			System.out.println("fim das simulacoes.");
 			iteration.showupTheBestSolutionSoFar();
 			iteration.generateCrossingOver();
 			iteration.doMutations();
@@ -50,20 +52,20 @@ public class TrafficLightProgramer {
 	}
 
 	private class Iterations {
-		int loop = 50;
+		int loop = 100;
 
 		private void generateCrossingOver() {
 
 			// roulette method
-			int sum = sumIndexes();
+			double sum = sumIndexes();
 
-			int luckParent, luckMother;
+			double luckParent, luckMother;
 			int parentIndex, motherIndex;
 			int crossingOverPoint;
 
 			for (int i = 0; i < halfPopulationSize(); i++) {
-				luckParent = (int) Math.round(Math.random() * sum);
-				luckMother = (int) Math.round(Math.random() * sum);
+				luckParent = new Random().nextDouble() * sum;
+				luckMother = new Random().nextDouble() * sum;
 
 				parentIndex = 0;
 				while (luckParent > 0 && parentIndex < populationSize) {
@@ -83,18 +85,18 @@ public class TrafficLightProgramer {
 				if (motherIndex < 0)
 					motherIndex = 0;
 
-				Chromosome choicedParent = chromosomes.get(parentIndex).clone();
+				Chromosome chosenParent = chromosomes.get(parentIndex).clone();
 				Chromosome choicedMother = chromosomes.get(motherIndex).clone();
 
-				newChromosomes.set(i, choicedParent);
+				newChromosomes.set(i, chosenParent);
 				newChromosomes.set(i + halfPopulationSize(), choicedMother);
 
 				crossingOverPoint = (int) (Math.random() * Integer.MAX_VALUE % environment.genotypeNumber);
 
 				for (int j = crossingOverPoint; j < environment.genotypeNumber; j++) {
-					Genotype parentAllele = choicedParent.genotypes.get(j);
+					Genotype parentAllele = chosenParent.genotypes.get(j);
 					Genotype motherAllele = choicedMother.genotypes.get(j);
-					choicedParent.genotypes.set(j, motherAllele);
+					chosenParent.genotypes.set(j, motherAllele);
 					choicedMother.genotypes.set(j, parentAllele);
 				}
 			}
@@ -106,15 +108,16 @@ public class TrafficLightProgramer {
 		}
 
 		public boolean doContinue() {
+			// return false;
 			return loop > 0;
 		}
 
 		/**
 		 * Helper method to calc the initial roulette method value
 		 */
-		private int sumIndexes() {
+		private double sumIndexes() {
 
-			int sum = 0;
+			double sum = 0;
 
 			for (int i = 0; i < populationSize; i++) {
 				sum += chromosomes.get(i).fitnessIndex;
@@ -149,8 +152,7 @@ public class TrafficLightProgramer {
 					}
 				}
 			}
-			System.out.println("The best solution at loop " + loop + " is: " + bestInTheLoop.fitnessIndex + " "
-					+ bestInTheLoop.toString());
+			System.out.println("The best solution at loop " + loop + " is: " + bestInTheLoop.fitnessIndex + " " + bestInTheLoop.toString());
 
 		}
 
@@ -161,25 +163,26 @@ public class TrafficLightProgramer {
 		}
 
 		private void generateInitialPopulation() {
+			Chromosome chromosome = new Chromosome();
+			// at the beginning all fitness index are bad
+			chromosome.fitnessIndex = 0;
+			for (int j = 0; j < environment.genotypeNumber; j++) {
+				Genotype genotype = new Genotype();
+				TLLogic lightLogic = environment.getSimulator().getNetFile().getLoadedNet().getTlLogics().get(j);
+				genotype.gene_delay = lightLogic.getOffset();
+				genotype.gene_plan = lightLogic.getPhases();
+				chromosome.genotypes.add(genotype);
+			}
+			
 			for (int i = 0; i < populationSize; i++) {
-				Chromosome chromosome = new Chromosome();
-				// at the beginning all fitness index are bad
-				chromosome.fitnessIndex = 0;
-				chromosome.genotypes = new ArrayList<Genotype>();
-				for (int j = 0; j < environment.genotypeNumber; j++) {
-					Genotype genotype = new Genotype();
-					TLLogic lightLogic = environment.getSimulator().getNetFile().getLoadedNet().getTlLogics().get(j);
-					genotype.gene_delay = lightLogic.getOffset();
-					genotype.gene_plan = environment.getPlanGenes(j)[0];
-					for (int ip = 0; ip < environment.getPlanGenes(j).length; ip++) {
-						List<TLLogic.Phase> plan = environment.getPlan(genotype.gene_plan).getPhases();
-						if (lightLogic.getPhases().equals(plan)) {
-							genotype.gene_plan = ip;
-						}
-					}
-					chromosome.genotypes.add(genotype);
+				chromosomes.add(chromosome.clone());
+			}
+			
+			for (int i = 1; i < populationSize; i++) {
+				Chromosome c = chromosomes.get(i);
+				for (int j = 0; j < 100; j++) {
+					c.mutate(null);
 				}
-				chromosomes.add(chromosome);
 			}
 		}
 

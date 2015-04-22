@@ -33,11 +33,11 @@ public class SimulatorTest {
     @Test
     public void test() throws IOException {
         NetFile netFile = new NetFile();
-        netFile.load(new File(TestEnvironment1.path_teste_1 + "example.net.xml"));
+        netFile.load(new File(TestEnvironment1.path_teste_1 + "exemplo01.net.xml"));
 
         Simulator<StatisticalOutput> simulador = new Simulator(new StatisticalOutput());
         simulador.setNetFile(netFile);
-        simulador.setSumoConfigFile(new File(TestEnvironment1.path_teste_1 + "example.sumo.cfg"));
+        simulador.setSumoConfigFile(new File(TestEnvironment1.path_teste_1 + "exemplo01.sumo.cfg"));
 
         simulador.simulate();
 

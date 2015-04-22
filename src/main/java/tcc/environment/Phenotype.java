@@ -28,8 +28,12 @@ public class Phenotype {
 	public int delay;
 	public TrafficLightPhases plan;
 
-	public Phenotype(Genotype genotipo, Environment ambiente) {
-		this.delay = genotipo.gene_delay;
-		this.plan = ambiente.getPlan(genotipo.gene_plan);
+	public Phenotype() {
+	}
+
+	public Phenotype(Genotype genotype) {
+		delay = genotype.gene_delay;
+		plan = new TrafficLightPhases(genotype.gene_plan);
+
 	}
 }

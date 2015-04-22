@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on Tue Mar 10 11:41:52 2015 by SUMO netconvert Version 0.22.0
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/netconvertConfiguration.xsd">
+
+    <input>
+        <node-files value="exemplo01.nod.xml"/>
+        <edge-files value="exemplo01.edge.xml"/>
+        <connection-files value="exemplo01.con.xml"/>
+    </input>
+
+    <output>
+        <output-file value="exemplo01.net.xml"/>
+    </output>
+
+</configuration>
+-->
+
+<net version="0.13" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/net_file.xsd">
+
+    <location netOffset="200.00,0.00" convBoundary="0.00,0.00,400.00,0.00" origBoundary="-200.00,0.00,200.00,0.00" projParameter="!"/>
+
+    <edge id=":t1_0" function="internal">
+        <lane id=":t1_0_0" index="0" speed="10.00" length="0.10" shape="100.00,-1.65 100.00,-1.65"/>
+    </edge>
+    <edge id=":t2_0" function="internal">
+        <lane id=":t2_0_0" index="0" speed="10.00" length="0.10" shape="300.00,-1.65 300.00,-1.65"/>
+    </edge>
+    <edge id=":tm_0" function="internal">
+        <lane id=":tm_0_0" index="0" speed="10.00" length="0.10" shape="200.00,-1.65 200.00,-1.65"/>
+    </edge>
+
+    <edge id="e10" from="1" to="t1" priority="2">
+        <lane id="e10_0" index="0" speed="10.00" length="100.00" shape="0.00,-1.65 100.00,-1.65"/>
+    </edge>
+    <edge id="e11" from="t1" to="tm" priority="2">
+        <lane id="e11_0" index="0" speed="10.00" length="100.00" shape="100.00,-1.65 200.00,-1.65"/>
+    </edge>
+    <edge id="e20" from="tm" to="t2" priority="1">
+        <lane id="e20_0" index="0" speed="10.00" length="100.00" shape="200.00,-1.65 300.00,-1.65"/>
+    </edge>
+    <edge id="e21" from="t2" to="2" priority="1">
+        <lane id="e21_0" index="0" speed="10.00" length="100.00" shape="300.00,-1.65 400.00,-1.65"/>
+    </edge>
+
+    <tlLogic id="t1" type="static" programID="0" offset="0">
+        <phase duration="31" state="G"/>
+        <phase duration="3" state="y"/>
+    </tlLogic>
+    <tlLogic id="t2" type="static" programID="0" offset="0">
+        <phase duration="31" state="G"/>
+        <phase duration="3" state="y"/>
+    </tlLogic>
+    <tlLogic id="tm" type="static" programID="0" offset="0">
+        <phase duration="31" state="G"/>
+        <phase duration="3" state="y"/>
+    </tlLogic>
+
+    <junction id="1" type="unregulated" x="0.00" y="0.00" incLanes="" intLanes="" shape="-0.00,-0.05 -0.00,-3.25"/>
+    <junction id="2" type="unregulated" x="400.00" y="0.00" incLanes="e21_0" intLanes="" shape="400.00,-3.25 400.00,-0.05"/>
+    <junction id="t1" type="traffic_light" x="100.00" y="0.00" incLanes="e10_0" intLanes=":t1_0_0" shape="100.00,-0.05 100.00,-3.25 100.00,-0.05">
+        <request index="0" response="0" foes="0" cont="0"/>
+    </junction>
+    <junction id="t2" type="traffic_light" x="300.00" y="0.00" incLanes="e20_0" intLanes=":t2_0_0" shape="300.00,-0.05 300.00,-3.25 300.00,-0.05">
+        <request index="0" response="0" foes="0" cont="0"/>
+    </junction>
+    <junction id="tm" type="traffic_light" x="200.00" y="0.00" incLanes="e11_0" intLanes=":tm_0_0" shape="200.00,-0.05 200.00,-3.25 200.00,-0.05">
+        <request index="0" response="0" foes="0" cont="0"/>
+    </junction>
+
+    <connection from="e10" to="e11" fromLane="0" toLane="0" via=":t1_0_0" tl="t1" linkIndex="0" dir="s" state="o"/>
+    <connection from="e11" to="e20" fromLane="0" toLane="0" via=":tm_0_0" tl="tm" linkIndex="0" dir="s" state="o"/>
+    <connection from="e20" to="e21" fromLane="0" toLane="0" via=":t2_0_0" tl="t2" linkIndex="0" dir="s" state="o"/>
+
+    <connection from=":t1_0" to="e11" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":t2_0" to="e21" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":tm_0" to="e20" fromLane="0" toLane="0" dir="s" state="M"/>
+
+</net>

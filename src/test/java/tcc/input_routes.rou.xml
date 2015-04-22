@@ -1,0 +1,7 @@
+<routes>
+   <vtype id="SUMO_DEFAULT_TYPE" accel="0.8" decel="4.5" sigma="0.5" length="3" maxspeed="70"/>
+   <route id="always_right" multi_ref="x" edges="eh1 eh2"/>
+   <route id="always_down" multi_ref="x" edges="ev1 ev2"/>
+   <flow id="always_right" type="SUMO_DEFAULT_TYPE" route="always_right" begin="0" end="1" period="0.1"/>
+   <flow id="always_down" type="SUMO_DEFAULT_TYPE" route="always_down" begin="0" end="1" period="0.1"/>
+</routes>

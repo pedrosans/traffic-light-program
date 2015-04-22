@@ -25,7 +25,7 @@ import tcc.util.IOUtil;
 
 public class NetFile {
 
-	private static String FINAL_TAG = "</tl-logic>";
+	private static String FINAL_TAG = "</tlLogic>";
 	String content;
 	File file;
 	int tl_start_index;
@@ -52,8 +52,8 @@ public class NetFile {
 
 	public void load(String content) {
 		this.content = content;
-		tl_start_index = content.indexOf("<tl-logic");
-		int possible_end = content.indexOf("</tl-logic>");
+		tl_start_index = content.indexOf("<tlLogic");
+		int possible_end = content.indexOf("</tlLogic>");
 		while (possible_end != -1) {
 			tl_end_index = possible_end;
 			possible_end = content.indexOf(FINAL_TAG, possible_end + FINAL_TAG.length());

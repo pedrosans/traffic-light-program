@@ -35,7 +35,7 @@ public class ChromosomeTest {
 		TestEnvironment1 testEnvironment1 = new TestEnvironment1();
 
 		cromossomo.genotypes = Arrays.asList(new Genotype[] {//
-				new Genotype(0, 0), new Genotype(0, 0), new Genotype(0, 0) //
+				new Genotype(null, 0), new Genotype(null, 0), new Genotype(null, 0) //
 				});
 
 		cromossomo.calculateTheFitnessIndex(testEnvironment1);
